@@ -1,0 +1,18 @@
+{
+  "name": "lucasys",
+  "version": "3.0.0",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-uglify-es": "^3.3.0",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "scripts": {
+    "start": "grunt watch --force",
+    "sass": "sass --watch sass:. --style compressed",
+    "electron": "electron main.js"
+  },
+  "dependencies": {
+    "electron": "^13.1.7"
+  }
+}

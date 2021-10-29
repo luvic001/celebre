@@ -1,0 +1,79 @@
+body.popup-open section.popup-site {
+  opacity: 1;
+  pointer-events: all;
+}
+
+section.popup-site {
+  position: fixed;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2rem;
+  justify-content: center;
+  overflow-y: auto;
+  opacity: 0;
+  z-index: 550;
+  pointer-events: none;
+  transition: ease .3s opacity;
+}
+
+section.popup-site, 
+section.popup-site .glass {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+section.popup-site .glass {
+  position: absolute;
+  z-index: 0;
+  background-color: rgba(0,0,0,.8);
+}
+
+section.popup-site .content {
+  position: relative;
+  background-color: #fff;
+  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 576px;
+  flex-direction: column;
+  display: flex;
+}
+
+section.popup-site .content .head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+section.popup-site .content .head h3 {
+  font-size: 20px;
+  margin-bottom: 0;
+  padding-right: 20px;
+}
+
+section.popup-site .content .head .close-button {
+  display: flex;
+}
+
+section.popup-site .content .head .close-button svg {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  margin-left: auto;
+  fill: #444444;
+}
+
+section.popup-site .content .response-content {
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+section.popup-site .content ul li {
+  list-style-type: disc;
+  margin-bottom: 5px;
+  margin-left: 25px
+}

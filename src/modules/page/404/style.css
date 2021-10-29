@@ -1,0 +1,39 @@
+section.page-404 {
+  background-color: #000;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section.page-404 div * {
+  text-align: center;
+}
+
+section.page-404 div h1 {
+  font-weight: 700;
+  font-size: 64px;
+  margin-bottom: .5rem;
+  color: #fff;
+}
+
+section.page-404 div p { 
+  color: #fff;
+  font-size: 26px;
+}
+
+section.page-404 div a {
+  background-color: #fff;
+  color: #444;
+  padding: 8px 16px;
+  display: block;
+  margin: 1.75rem auto;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+section.page-404 div a:hover {
+  text-decoration: none;
+  background-color: #ddd;
+}

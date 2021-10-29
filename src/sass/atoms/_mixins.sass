@@ -1,0 +1,294 @@
+@use "sass:math"
+
+$small: (576px)
+$medium: (768px)
+$large: (992px)
+$ex-large: (1200px)
+
+$font-default: 'QuickSand', sans-serif
+$font-title: 'QuickSand', sans-serif
+
+$preto: #000
+$branco: #fff
+$error: #c33
+$success: #0a4
+$warn: #fa0
+$cinza: #282828
+$cinza-paragraph: #434343
+$cinza-fundo: #e5e5e5
+$transparent: rgba(0,0,0,0)
+
+@mixin appearance($param)
+  -webkit-appearance: $param
+  -moz-appearance: $param
+  -o-appearance: $param
+  -ms-appearance: $param
+
+@mixin clamp($lineCount)
+  display: -webkit-box
+  box-orient: vertical
+  -moz-box-orient: vertical
+  -webkit-box-orient: vertical
+  line-clamp: $lineCount
+  -moz-line-clamp: $lineCount
+  -webkit-line-clamp: $lineCount
+  overflow: hidden
+
+@mixin bg($color)
+  background-color: $color
+
+@mixin flex-center-center()
+  display: flex
+  justify-content: center
+  align-items: center
+
+@mixin flex-start-center()
+  display: flex
+  justify-content: start
+  align-items: center
+
+@mixin flex-center-start()
+  display: flex
+  justify-content: center
+  align-items: center
+
+@mixin ellipsis($width)
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
+  max-width: $width
+
+@mixin breakpoint($point)
+  @if $point == uuxl 
+    @media (min-width: 1920px) 
+      @content
+  @if $point == uxl 
+    @media (min-width: 1590px) 
+      @content
+  @if $point == xl 
+    @media (min-width: 1367px) 
+      @content
+  @if $point == lg 
+    @media (min-width: 1200px) 
+      @content
+  @else if $point == md 
+    @media (min-width: 992px) 
+      @content
+  @else if $point == sm 
+    @media (min-width: 768px)  
+      @content
+  @else if $point == xs 
+    @media (min-width: 576px)  
+      @content
+  @else if $point == uxs 
+    @media (min-width: 320px)  
+      @content
+  @else if $point == uuxs 
+    @media (min-width: 240px)  
+      @content
+  @else 
+    @media (min-width: $point)  
+      @content
+    
+
+@mixin less-breakpoint($point)
+  @if $point == lg 
+    @media (max-width: 1200px) 
+      @content
+ 
+  @else if $point == md 
+    @media (max-width: 992px) 
+      @content
+  
+  @else if $point == sm 
+    @media (max-width: 768px)  
+      @content
+
+  @else if $point == xs 
+    @media (max-width: 576px)  
+      @content
+  @else 
+    @media ( max-width: $point )
+      @content
+
+@mixin flex($position)
+  @if $position == right
+    justify-content: flex-end
+
+  @else if $position == left
+    justify-content: flex-start
+
+  @else if $position == center
+    justify-content: center
+
+=keyframes($name)
+  @-webkit-keyframes #{$name}
+    @content
+  @-moz-keyframes #{$name}
+    @content
+  @-ms-keyframes #{$name}
+    @content
+  @keyframes #{$name}
+    @content
+
+=scrollbar()
+  ::-webkit-scrollbar
+    @content
+=scrollbar-thumb()
+  ::-webkit-scrollbar-thumb
+    @content
+
+=flex-center()
+  display: flex
+  align-items: center
+
+=justify-align-center()
+  display: flex
+  justify-content: center
+  align-items: center
+
+=margin-start($valor)
+  -webkit-margin-start: $valor
+  -moz-margin-start: $valor
+  -o-margin-start: $valor
+  margin-start: $valor
+
+=padding-start($valor)
+  -webkit-padding-start: $valor
+  -moz-padding-start: $valor
+  -o-padding-start: $valor
+  padding-start: $valor
+
+=transform($valor)
+  -webkit-transform: $valor
+  -moz-transform: $valor
+  -o-transform: $valor
+  transform: $valor
+
+=transform-rotate($valor)
+  -webkit-transform: rotate($valor)
+  -moz-transform: rotate($valor)
+  -o-transform: rotate($valor)
+  transform: rotate($valor)
+
+=transform-translateY($value)
+  -webkit-transform: translateY($value)
+  -moz-transform: translateY($value)
+  -o-transform: translateY($value)
+  transform: translateY($value)
+
+=transform-translateX($value)
+  -webkit-transform: translateX($value)
+  -moz-transform: translateX($value)
+  -o-transform: translateX($value)
+  transform: translateX($value)
+
+=transform-scale($trans1, $trans2, $scale)
+  -webkit-transform: translate($trans1, $trans2) scale($scale)
+  -moz-transform: translate($trans1, $trans2) scale($scale)
+  -ms-transform: translate($trans1, $trans2) scale($scale)
+  -o-transform: translate($trans1, $trans2) scale($scale)
+  transform: translate($trans1, $trans2) scale($scale)
+
+=origin($direcao1)
+  -webkit-transform-origin: ($direcao1)
+  -moz-transform-origin: ($direcao1)
+  -o-transform-origin: ($direcao1)
+  transform-origin: ($direcao1)
+
+=transform-origin($direcao1 ,$direcao2)
+  -webkit-transform-origin: ($direcao1 $direcao2)
+  -moz-transform-origin: ($direcao1 $direcao2)
+  -o-transform-origin: ($direcao1 $direcao2)
+  transform-origin: ($direcao1 $direcao2)
+
+=transition($atributo, $tempo, $suavidade)
+  -webkit-transition: ($atributo $tempo $suavidade)
+  -moz-transition: ($atributo $tempo $suavidade)
+  -o-transition: ($atributo $tempo $suavidade)
+  transition: ($atributo $tempo $suavidade)
+
+=itransition($atributo)
+  -webkit-transition: ($atributo)
+  -moz-transition: ($atributo)
+  -o-transition: ($atributo)
+  transition: ($atributo)
+
+=default_transition()
+  +itransition(ease .18s all)
+    
+=gradient($angle,$gradient1, $gradient2)
+  background-color: $gradient2 
+  background-image: -webkit-gradient(linear, $angle, from($gradient1), to($gradient2))
+  background-image: -webkit-linear-gradient($angle, $gradient1, $gradient2)
+  background-image:    -moz-linear-gradient($angle, $gradient1, $gradient2)
+  background-image:     -ms-linear-gradient($angle, $gradient1, $gradient2)
+  background-image:      -o-linear-gradient($angle, $gradient1, $gradient2)
+  background-image:         linear-gradient($angle, $gradient1, $gradient2)
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=$angle,StartColorStr='#{$gradient1}', EndColorStr='#{$gradient2}')
+
+=box-shadow($param1, $param2, $param3 ,$param4, $color)
+  -webkit-box-shadow: $param1 $param2 $param3 $param4 $color
+  -moz-box-shadow: $param1 $param2 $param3 $param4 $color
+  box-shadow: $param1 $param2 $param3 $param4 $color
+
+=text-shadow($param1)
+  -webkit-text-shadow: $param1
+  -moz-text-shadow: $param1
+  text-shadow: $param1
+
+=shadow($param)
+  -webkit-box-shadow: $param
+  -moz-box-shadow: $param
+  box-shadow: $param
+
+/* ======== Outros */
+=transitionio($transition...) 
+  -moz-transition:    all $transition linear
+  -o-transition:      all $transition linear
+  -webkit-transition: all $transition linear
+  transition:         all $transition linear
+
+=border-radius($radius) 
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+  border-radius: $radius
+
+@function calculateRem($size) 
+  $remSize: math.div($size, 16px)
+  @return $remSize * 1rem
+
+=font-size($size) 
+  font-size: $size
+  font-size: calculateRem($size)
+
+=opacity($opacity) 
+  opacity: $opacity
+  $opacity-ie: $opacity * 100
+  filter: alpha(opacity=$opacity-ie)
+
+/* ======== Background Color Opacity */
+=background-opacity($color: #000, $opacity: 0.85) 
+  background: $color
+  background: rgba($color, $opacity)
+
+/* ======== Columns */
+=columns($count: 3, $gap: 10) 
+  @include css3-prefix('column-count', $count)
+  @include css3-prefix('column-gap', $gap)
+
+/* ======== Animations */
+=animation($param)
+  animation: ($param)
+  -webkit-animation: ($param)
+  -moz-animation: ($param)
+  -o-animation: ($param)
+  -ms-animation: ($param)
+
+=filter($param)
+  filter: $param
+  -webkit-filter: $param
+  -moz-filter: $param
+  -o-filter: $param
+  -ms-filter: $param

@@ -1,0 +1,87 @@
+// Modal
+$success: #0a4
+$failed: #c33
+body.modal-is-open
+    .main-ps
+        +filter(blur(3px))
+.response-modal-ps
+    z-index: 500 !important
+    .content-ps.success
+        border: 1px solid $success
+        .close-ps
+            svg
+                color: $success
+    .content-ps.error
+        border: 1px solid $failed
+        .close-ps
+            svg
+                color: $failed
+    .content-ps
+        .extra-space
+            display: block !important
+            p
+                +font-size(20px)
+
+.modal-ps, .response-glass-ps, .glass-ps, .response-modal-ps
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    z-index: 300
+.response-modal-ps
+    .modal-title
+        font-size: 40px !important
+.modal-ps, .response-modal-ps
+    display: none
+    position: fixed
+    padding: 1rem
+    z-index: 1000
+    .glass-ps, .response-glass-ps
+        position: absolute
+        background-color: rgba($preto, 0.8)
+        z-index: 0
+    .content-ps.show-callforme
+        .call-forme
+            display: block
+    .content-ps.has-extra-space
+        .extra-space
+            display: block
+        .modal-title
+            display: none
+    .content-ps
+        background-color: $branco
+        z-index: 1
+        margin: 0 auto
+        display: block
+        position: absolute
+        max-width: 95%
+        padding: 33px 30px 45px
+        right: 0
+        overflow: auto
+        left: 0
+        max-height: 500px
+        top: 25%
+        +breakpoint(md)
+            max-height: 560px
+            padding: 63px 80px
+            max-width: 50%
+        .close-ps, .response-close-ps
+            position: absolute
+            top: 1rem
+            right: 1rem
+            svg
+                cursor: pointer
+                +font-size(20px)
+        .modal-title
+            color: $cinza-paragraph
+            text-align: center
+            line-height: 1
+            margin-bottom: 1rem
+            +font-size(20px)
+            +breakpoint(md)
+                +font-size(38px)
+        .extra-space
+            display: none
+        .alert-space
+            p
+                text-align: center

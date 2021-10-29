@@ -1,0 +1,52 @@
+.debug-content
+	background-color: #dedede
+	padding: 1rem
+	border-left: 2px solid #999
+	margin-bottom: 1rem
+	p
+		margin-bottom: 0
+	svg
+		margin-right: 13px
+.debug-content.log-default
+	border-left-color: #09b
+	svg, i
+		color: #09b
+.debug-content.log-error
+	border-left-color: #c33
+	svg, i
+		color: #c33
+.debug-content.log-warning
+	border-left-color: #ef9017
+	svg, i
+		color: #ef9017
+
+.debug-content.log-success
+	border-left-color: #0a4
+	svg, i
+		color: #0a4
+
+pre
+	background-color: $branco
+	+border-radius(10px)
+	overflow-y: hidden
+	max-width: 100%
+	margin: 3rem auto
+	padding: 50px 25px 10px
+	font-family: monospace
+	border: 1px solid #ddd
+	line-height: 18px
+	position: relative
+	&:before
+		position: absolute
+		top: 10px
+		left: 10px
+		padding-bottom: 10px
+		color: #aaa
+		+font-size(16px)
+		content: 'Variable Debug'
+		font-family: $font-default
+		width: calc(100% - 20px)
+		border-bottom: 1px solid #eee
+	*
+		font-family: monospace !important
+		+font-size(14px)

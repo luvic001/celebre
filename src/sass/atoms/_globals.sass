@@ -1,0 +1,206 @@
+
+html
+	font-size: 100%
+
+body
+	-webkit-overflow-scrolling: touch
+	-webkit-font-smoothing: antialiased
+	overflow-x: hidden
+*
+	box-sizing: border-box
+html, body
+	height: 100%
+
+/* float clearing for IE6 */
+* html .clearfix
+	height: 1%
+	overflow: visible
+
+/* float clearing for IE7 */
+*+html .clearfix
+	min-height: 1%
+
+/* Scrollbars */
+// +scrollbar()
+// 	width: 4px
+// 	height: 6px
+// 	background-color: rgba($preto, .2)
+// +scrollbar-thumb()
+// 	background-color: #777777
+
+::selection
+	color: $branco
+	background-color: $preto
+
+.background-cover
+	background-size: cover
+
+.background-center
+	background-position: center
+
+.align-left
+	text-align: left
+.align-right
+	text-align: right
+
+.no-mouse
+	pointer-events: none
+	*
+		pointer-events: none
+
+.align-center
+	text-align: center
+.align-right 
+	text-align: right
+.align-left
+	text-align: left
+
++breakpoint(sm)
+	.align-sm-right
+		text-align: right
+	.align-sm-left
+		text-align: left
+	.align-sm-center
+		text-align: center
+
++breakpoint(md)
+	.align-md-center
+		text-align: center
+	.align-md-right
+		text-align: right
+	.align-md-left
+		text-align: left
++breakpoint(lg)
+	.align-lg-center
+		text-align: center
+	.align-lg-right
+		text-align: right
+	.align-lg-left
+		text-align: left
++breakpoint(xl)
+	.align-xl-center
+		text-align: center
+	.align-xl-right
+		text-align: right
+	.align-xl-left
+		text-align: left
+
+.b-radius
+	+border-radius(8px)
+
+.clearfix:after
+	clear: both
+	content: "."
+	display: block
+	height: 0
+	visibility: hidden
+	font-size: 0
+
+time
+	color: $cinza-paragraph
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6
+	font-family: $font-title
+
+button,
+ul,
+li,
+select,
+input,
+p
+	font-family: $font-default
+	color: $cinza-paragraph
+
+.is-fixed
+	position: fixed !important
+.is-absolute
+	position: absolute !important
+.is-relative
+	position: relative !important
+
+.background-section
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	width: 100%
+	height: 100%
+	margin: auto
+.background-parallax
+	+less-breakpoint(md)
+		background-position: center center !important
+.no-decoration
+	text-decoration: none
+	&:hover
+		text-decoration: none
+.background-parallax-relative
+	+less-breakpoint(lg)
+		background-position: center center !important
+.to-upper
+	text-transform: uppercase
+.background-container
+	background-size: cover
+	background-repeat: no-repeat
+.background-fixed
+	+breakpoint(md)
+		background-attachment: fixed
+.background-center
+	background-position: center
+.slide-item-full
+	width: 100%
+	min-height: 350px
+	height: 84vh
+
+.centerize
+	display: block
+	margin: 0 auto
+
+.img-fluid
+	max-width: 100%
+	height: auto
+
+.rotate-icon
+	svg, i
+		+transform(rotate(90deg))
+
+
+.site-popup
+	position: relative
+	padding: 0 !important
+	max-width: 640px !important
+	+border-radius(0px !important)
+	img
+		margin-bottom: -3px !important
+		max-width: 100%
+		height: auto
+
+.text-editor
+	p
+		+font-size(16px)
+		margin-bottom: 8px
+	ul, ol
+		margin: 10px 0
+		margin-left: 30px
+		li
+			margin-bottom: 4px
+
+	ul
+		li
+			list-style-type: disc
+	ol
+		li
+			list-style-type: decimal
+	h1, h2, h3, h4, h5, h6
+		font-weight: 700
+	h1
+		+font-size(36px)
+	h2
+		+font-size(28px)
+	h3, h4
+		+font-size(20px)

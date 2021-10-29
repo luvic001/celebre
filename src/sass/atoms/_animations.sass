@@ -1,0 +1,22 @@
+// Global
+
+.translate-effect
+	+opacity(0)
+.translate-effect.from-left
+	pointer-events: none
+	+breakpoint(md)
+		+transform(translate(-150px, 0px))
+.translate-effect.from-right
+	pointer-events: none
+	+breakpoint(md)
+		+transform(translate(150px, 0px))
+.fade-in
+	pointer-events: none
+	+opacity(0)
+.translate-effect.from-top
+	pointer-events: none
+	+transform(translate(0px, -150px))
+.translate-effect.width
+	width: 0%
+.translate-effect.max-width
+	max-width: 0px !important
