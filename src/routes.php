@@ -37,7 +37,7 @@ endif;
 $routes = [
   'index' => [
     'PATH' => 'page/home',
-    'TITLE' => 'Escreva aqui o título da página',
+    'TITLE' => 'Celebre: Seu Evento sem Covid',
     'blank_page' => false
   ],
   'backend' => [
