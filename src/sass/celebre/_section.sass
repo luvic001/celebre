@@ -7,4 +7,19 @@ section.center-page
   width: 100%
   background-color: $branco
   +shadow(0 2px 5px rgba($preto, .3))
-
+  .box-title
+    span
+      color: $azul
+      font-weight: 700
+      +font-size(16px)
+      +breakpoint(sm)
+        +font-size(18px)
+    a
+      color: $azul
+      text-transform: uppercase
+      +font-size(14px)
+      +breakpoint(sm)
+        +font-size(16px)
+      &:hover
+        text-decoration: none
+        

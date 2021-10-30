@@ -44,3 +44,30 @@ form
       border: 0
       width: 100%
       padding: 8px
+
+  .input-search
+    label
+      position: relative
+      button
+        background-color: $transparent
+        border: 0
+        top: 6px
+        right: 10px
+        position: absolute
+
+.btn-site
+  display: inline-block
+  padding: 10px 15px
+  text-align: center
+  background-color: $laranja
+  color: $branco
+  text-transform: uppercase
+  font-family: $font-default
+  font-weight: 700
+  width: auto
+  +border-radius(5px)
+  +default_transition()
+  &:hover
+    color: $branco
+    text-decoration: none
+    +filter(brightness(0.9))

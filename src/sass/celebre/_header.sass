@@ -1,0 +1,30 @@
+header.site-header
+  background-color: $azul-header
+  padding: .25rem 1rem
+  +breakpoint(sm)
+    padding: .5rem 1rem
+  h1
+    figure
+      img
+        max-width: 100%
+  
+section.user-bar
+
+  .box-content
+    padding: 20px 1rem
+    +breakpoint(sm)
+      padding: 28px
+
+    .user-name
+      p
+        color: $cinza-paragrafo
+        font-weight: 700
+
+    .logout-button
+      a
+        text-transform: uppercase
+        font-weight: 700
+        color: $laranja
+        font-family: $font-default
+        &:hover
+          text-decoration: none

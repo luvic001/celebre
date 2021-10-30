@@ -37,7 +37,17 @@ endif;
 $routes = [
   'index' => [
     'PATH' => 'page/home',
-    'TITLE' => 'Celebre: Seu Evento sem Covid',
+    'TITLE' => 'Celebre - Seu Evento sem Covid',
+    'blank_page' => false
+  ],
+  'painel' => [
+    'PATH' => 'page/painel/dashboard',
+    'TITLE' => 'Painel | Celebre - Seu Evento sem Covid',
+    'blank_page' => false
+  ],
+  'clientes' => [
+    'PATH' => 'page/painel/clientes',
+    'TITLE' => 'Clientes | Celebre - Seu Evento sem Covid',
     'blank_page' => false
   ],
   'backend' => [
