@@ -28,3 +28,27 @@ section.user-bar
         font-family: $font-default
         &:hover
           text-decoration: none
+
+section.header-interna
+  padding: 2rem 0
+  .alba-logo
+    padding: 1rem 0
+    +breakpoint(sm)
+      padding: 0
+    figure
+      +flex-center-center()
+      margin-bottom: 2rem
+      +breakpoint(sm)
+        margin-bottom: 0
+      img
+        max-width: 140px
+        +breakpoint(sm)
+          max-width: 160px
+    p
+      color: $azul
+      font-weight: 700
+      +font-size(16px)
+      margin-bottom: 1.5rem
+      +breakpoint(sm)
+        margin-bottom: 0
+        +font-size(18px)

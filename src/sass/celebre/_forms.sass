@@ -55,8 +55,18 @@ form
         right: 10px
         position: absolute
 
+  .input-select
+    select
+      padding: 2px 10px 2px 0px
+      border: 0
+      border-bottom: 1px solid $azul
+      color: $azul
+      font-weight: 700
+      cursor: pointer
+
 .btn-site
-  display: inline-block
+  display: inline-flex
+  align-items: center
   padding: 10px 15px
   text-align: center
   background-color: $laranja
@@ -67,7 +77,42 @@ form
   width: auto
   +border-radius(5px)
   +default_transition()
+  border: 1px solid $laranja
   &:hover
     color: $branco
     text-decoration: none
     +filter(brightness(0.9))
+  i, svg
+    margin-right: 10px
+
+  &.btn-wire
+    background-color: $transparent
+    color: $laranja
+    &:hover
+      background-color: $laranja
+      color: $branco
+      +filter(brightness(1))
+
+  &.btn-no-color
+    color: $azul
+    background-color: $transparent
+    border: 0
+    padding: 0
+
+
+.input-date-select
+  > div
+    padding: 8px 12px
+    +border-radius(5px)
+    +shadow(0 0 3px #ddd)
+    position: relative
+    cursor: pointer
+    color: $cinza-paragrafo
+    background-color: $branco
+    &:hover
+      +shadow(0 0 3px #aaa)
+    i, svg
+      position: absolute
+      right: 10px
+      top: 8px
+      

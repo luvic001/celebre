@@ -15,7 +15,7 @@ if (!defined('PATH')) exit;
 </header>
 
 <section class="user-bar">
-  <div class="container">
+  <div class="container-fluid">
     <div class="box-content d-flex justify-content-between">
       <div class="user-name">
         <p>Olá, [nome de usuário]!</p>

@@ -22,4 +22,25 @@ section.center-page
         +font-size(16px)
       &:hover
         text-decoration: none
-        
+
+section.site-sections
+  padding: 2rem 0
+  .title-base
+    border-bottom: 1px solid $azul
+    padding-bottom: 1rem
+    margin-bottom: 1rem
+    flex-wrap: wrap
+    +breakpoint(md)
+      flex-wrap: nowrap
+    .section-title
+      h2
+        +font-size(22px)
+        color: $azul
+        font-weight: 700
+        margin-bottom: 1rem
+        +breakpoint(sm)
+          margin-bottom: 0
+          
+    .section-filter
+      +breakpoint(sm)
+        max-width: 320px

@@ -17,3 +17,70 @@ section.dashboard
       +font-size(16px)
       +breakpoint(sm)
         +font-size(20px)
+
+
+section.client-list
+  .table-list
+    overflow-x: auto
+    .heading-table
+      display: flex
+      align-items: center
+      .heading-part
+        width: 25%
+        &.search-user
+          width: 40%
+        &.user-status-total-tested,
+        &.user-status-total
+          p
+            text-align: right
+            font-weight: 700
+            span
+              color: $laranja
+    
+    .body-table
+      ul
+        display: flex
+        margin-bottom: 10px
+        &.table-head
+          margin-bottom: 0
+          padding-top: 3rem
+          li
+            background-color: $branco
+            font-weight: 700
+            text-overflow: initial
+        li
+          color: $azul
+          overflow-x: hidden
+          overflow-y: hidden
+          text-overflow: ellipsis
+          width: 100%
+          background-color: $fundo-da-pagina
+          padding: 10px
+          line-height: 20px
+          +font-size(14px)
+          &:first-child
+            max-width: 80px
+
+  .footer-pagination
+    padding: 2rem 0 0
+    display: flex
+    justify-content: space-between
+    .pagination
+      align-items: center
+
+      .paginate-number
+        margin-right: 2rem
+
+      .info
+        margin-right: 2rem
+      .arrows
+        width: 140px
+        ul
+          display: flex
+          li
+            a
+              color: $azul
+              width: 26px
+              display: inline-block
+              +font-size(18px)
+              text-align: center
