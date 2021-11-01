@@ -11,11 +11,19 @@ form
         &:first-of-type
           margin-bottom: 10px
           display: block
+        &.label-text
+          color: $cinza-paragrafo
+          font-weight: 700
+          +breakpoint(md)
+            +font-size(14px)
+          +breakpoint(lg)
+            +font-size(16px)
       input
         width: 100%
         +border-radius(5px)
         border: 1px solid #B2B2B2
         padding: 8px
+        height: 40px
 
   .input-password
     label
@@ -51,7 +59,7 @@ form
       button
         background-color: $transparent
         border: 0
-        top: 6px
+        top: 9px
         right: 10px
         position: absolute
 
@@ -61,8 +69,21 @@ form
       border: 0
       border-bottom: 1px solid $azul
       color: $azul
+      background-color: $transparent
       font-weight: 700
       cursor: pointer
+
+  .input-checkbox
+    label
+      display: flex
+      align-items: center
+      span.label-text
+        color: $azul
+        font-weight: 700
+      input
+        width: 20px
+        height: 20px
+        margin-right: 10px
 
 .btn-site
   display: inline-flex

@@ -29,7 +29,7 @@ get_modules('DatePickerRange-config', 'page/global');
     </div>
 
     <div class="go-back-link">
-      <a href="#" class="btn-site btn-wire">
+      <a href="javascript:history.back(-1);" class="btn-site btn-wire">
         <i class="fa fa-angle-left"></i>
         Voltar
       </a>

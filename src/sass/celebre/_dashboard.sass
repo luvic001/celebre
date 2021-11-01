@@ -80,7 +80,62 @@ section.client-list
           li
             a
               color: $azul
-              width: 26px
+              width: 34px
               display: inline-block
               +font-size(18px)
               text-align: center
+
+.box-cadastro
+  padding: 1rem
+  +breakpoint(sm)
+    padding: 2rem 1rem
+.form-cadastro
+  background-color: $fundo_da_pagina
+  padding: 1rem 0
+  +breakpoint(sm)
+    padding: 2rem 0
+
+.form-wire
+  border: 1px solid $fundo_da_pagina
+  padding: 2rem 1rem
+  h3
+    color: $azul
+    font-weight: 700
+    +font-size(20px)
+    margin-bottom: 3rem
+
+  .side-input
+    margin-bottom: 3rem
+    h4
+      +font-size(16px)
+      font-weight: 700
+      color: $azul
+      width: 10%
+
+    > div
+      width: 45%
+      padding: 0 1rem
+      &:last-child
+        label
+          select
+            padding-top: 8px
+            padding-bottom: 8px
+            width: 100%
+
+  .box-evento
+    border-bottom: 1px solid $cinza-fundo
+    margin-bottom: 1rem
+    h4
+      color: $azul
+      font-size: 18px
+      font-weight: 700
+      margin-bottom: 20px
+
+    .side-input
+      margin-bottom: 1.5rem
+
+
+[result-doc]
+  display: none
+  &.active
+    display: block

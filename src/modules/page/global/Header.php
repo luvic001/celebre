@@ -21,7 +21,7 @@ if (!defined('PATH')) exit;
         <p>Olá, [nome de usuário]!</p>
       </div>
       <div class="logout-button">
-        <a href="#">
+        <a href="<?= site_url() ?>" title="Sair">
           <span>Sair</span>
           <i class="fas fa-sign-out-alt"></i>
         </a>

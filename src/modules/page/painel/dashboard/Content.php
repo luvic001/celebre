@@ -26,7 +26,7 @@ get_modules('Header', 'page/global');
       <div class="box-content mb-3">
         <p class="box-title mb-3 d-flex align-items-center justify-content-between">
           <span>Buscar cliente</span>
-          <a href="#" title="Ver todos">Ver todos
+          <a href="<?= site_url() ?>/clientes" title="Ver todos">Ver todos
             <i class="fas fa-arrow-right ml-2"></i>
           </a>
         </p>
@@ -52,7 +52,7 @@ get_modules('Header', 'page/global');
         </p>
 
         <div class="align-center mb-3">
-          <a href="#" class="btn-site" title="Iniciar novo cadastro">Iniciar novo cadastro</a>
+          <a href="<?= site_url() ?>/cadastro-de-cliente" class="btn-site" title="Iniciar novo cadastro">Iniciar novo cadastro</a>
         </div>
 
       </div>

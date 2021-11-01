@@ -10,7 +10,7 @@ if (!defined('PATH')) exit;
 
     <!-- Adicionar novo -->
     <div class="heading-part add-new">
-      <a href="#" class="btn-site">Novo cadastro</a>
+      <a href="<?= site_url() ?>/cadastro-de-cliente" title="Novo cadastro" class="btn-site">Novo cadastro</a>
     </div>
 
     <!-- Busca -->
@@ -47,7 +47,7 @@ if (!defined('PATH')) exit;
     <ul class="table-head">
       <li>Ação</li>
       <li>Nome</li>
-      <li>CPF</li>
+      <li>CPF/RNE/Passaporte</li>
       <li>E-mail</li>
       <li>Celular</li>
       <li>Laboratório</li>

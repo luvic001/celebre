@@ -50,6 +50,11 @@ $routes = [
     'TITLE' => 'Clientes | Celebre - Seu Evento sem Covid',
     'blank_page' => false
   ],
+  'cadastro-de-cliente' => [
+    'PATH' => 'page/painel/cadastro-de-clientes',
+    'TITLE' => 'Cadastro de Clientes | Celebre - Seu Evento sem Covid',
+    'blank_page' => false
+  ],
   'backend' => [
     'ajax' => [
       'PATH' => 'core/ajax-module'
