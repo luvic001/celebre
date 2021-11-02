@@ -35,7 +35,7 @@ get_modules('Header', 'page/global');
           <form>
             <div class="input-text input-search">
               <label>
-                <input type="text" name="search-term" id="search-term" placeholder="CPF/RNE/Passaporte/etc..." required="">
+                <input type="text" name="search-term" id="search-term" placeholder="CPF/RNE/Passaporte/Email/Telefone/etc..." required="">
                 <button type="submit">
                   <i class="fas fa-search"></i>
                 </button>

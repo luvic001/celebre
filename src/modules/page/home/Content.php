@@ -53,11 +53,12 @@ if (!defined('PATH')) exit;
           </div><!-- .box-content -->
         </div><!-- .form-space -->
 
+        <?php /*
         <div class="lost-password-link">
           <p class="align-center">
             <a href="#" title="Esqueci minha senha">Esqueci minha senha</a>
           </p> 
-        </div>
+        </div> */ ?>
 
       </div><!-- .col-lg-6.col-md-8 -->
     </div><!-- .row.justify-content-center -->

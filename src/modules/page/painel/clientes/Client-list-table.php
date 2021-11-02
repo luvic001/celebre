@@ -18,7 +18,7 @@ if (!defined('PATH')) exit;
       <form>
         <div class="input-text input-search">
           <label>
-            <input type="text" name="search-term" id="search-term" placeholder="Buscar cliente..." required="">
+            <input type="text" name="search-term" id="search-term" placeholder="Buscar cliente por CPF/RNE/Passaporte/Email/Celular" required="">
             <button type="submit">
               <i class="fas fa-search"></i>
             </button>
