@@ -3,6 +3,9 @@
 if (!defined('PATH')) exit; 
 global $routes, $curRoute;
 
+global $is_user_logged_in;
+$is_user_logged_in = is_user_logged_in()[0];
+
 ?>
 <!DOCTYPE html>
 <html lang="pt">

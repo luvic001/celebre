@@ -1,6 +1,7 @@
 <?php
 
 if (!defined('PATH')) exit;
+global $is_user_logged_in;
 
 ?>
 
@@ -14,14 +15,16 @@ if (!defined('PATH')) exit;
 
 </header>
 
+<?php if ($is_user_logged_in): ?>
+
 <section class="user-bar">
   <div class="container-fluid">
     <div class="box-content d-flex justify-content-between">
       <div class="user-name">
-        <p>Olá, [nome de usuário]!</p>
+        <p>Olá, <?= explode(' ', $is_user_logged_in['user_nicename'])[0] ?>!</p>
       </div>
       <div class="logout-button">
-        <a href="<?= site_url() ?>" title="Sair">
+        <a href="logout" ajax-link title="Sair">
           <span>Sair</span>
           <i class="fas fa-sign-out-alt"></i>
         </a>
@@ -29,3 +32,5 @@ if (!defined('PATH')) exit;
     </div>
   </div>
 </section>
+
+<?php endif; ?>

@@ -62,6 +62,9 @@ $routes = [
     'slugify' => [
       'PATH' => 'core/slugify'
     ],
+    'login' => [
+      'PATH' => 'celebre/login'
+    ],
   ]
 ];
 

@@ -1,9 +1,4 @@
-<?php
-
-if (!defined('PATH')) exit;
-
-?>
-
+<?php if (!defined('PATH')) exit; ?>
 
 <section class="center-page homepage">
 
@@ -24,7 +19,7 @@ if (!defined('PATH')) exit;
         <div class="form-space">
           <p class="legend-home align-center">Acesso ao painel</p>
           <div class="box-content">
-            <form>
+            <form action="login" ajax-form="">
               
               <div class="input-text mb-4">
                 <label>
