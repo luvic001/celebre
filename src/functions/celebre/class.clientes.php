@@ -185,6 +185,19 @@ class clientes {
 
   }
 
+  public function delete() {
+
+    if (!self::get_client_id()) return false;
+    $stmt = $this->db_object->delete('clb_clientes', [
+      'ID' => self::get_client_id()
+    ]);
+    
+    if (!$stmt) return false;
+
+    return true;
+
+  }
+
   public function index() {
 
     if (self::get_client_id()) {

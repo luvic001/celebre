@@ -6,6 +6,12 @@ get_modules('Header', 'page/global');
 
 global $is_user_logged_in, $locale;
 
+if (!$is_user_logged_in):
+  ___('
+  <p class="align-center mt-5" style="font-weight: 700;">Você deve estar logado para acessar esta página</p>
+  ');
+else:
+
 ?>
 
 <section class="dashboard site-sections">
@@ -66,3 +72,7 @@ global $is_user_logged_in, $locale;
 
   </div>
 </section>
+
+<?php
+
+endif;

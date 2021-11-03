@@ -71,6 +71,9 @@ $routes = [
     'atualizacao-via-atendente' => [
       'PATH' => 'celebre/atualizacao-via-atendente'
     ],
+    'excluir-cliente' => [
+      'PATH' => 'celebre/excluir-cliente'
+    ],
   ]
 ];
 

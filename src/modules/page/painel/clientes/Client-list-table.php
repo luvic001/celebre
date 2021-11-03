@@ -4,7 +4,7 @@ if (!defined('PATH')) exit;
 
 global $locale;
 
-global $vacinas, $eventos, $is_user_logged_in;
+global $vacinas, $eventos, $is_user_logged_in, $is_admin;
 $vacinas = get_vacinas();
 $eventos = get_eventos();
 
@@ -51,6 +51,9 @@ $client_test_result = client_test_result();
     <div class="heading-part user-status-total-tested">
       <p>Clientes Testados: 
         <span><?= $clientes_total_testados ?></span>
+        <a href="javascript:window.location.reload(true);" title="Recarregar página" class="ml-3">
+          <i class="fas fa-redo-alt"></i>
+        </a>
       </p>
     </div>
 
@@ -76,7 +79,12 @@ $client_test_result = client_test_result();
           <li>
             <a href="<?= site_url() ?>/cadastro-de-cliente/<?= do_hash($client->ID) ?>" class="btn-site ml-2">
               <i class="fas fa-edit mr-0"></i>
-            </a>
+            </a><br/>
+            <?php if ($is_admin): ?>
+              <a href="javascript:void(0);" delete-client="<?= do_hash($client->ID) ?>" title="excluir <?= $client->client_name ?>" class="btn-site btn-dangeous ml-2 mt-2">
+                <i class="far fa-trash-alt mr-0"></i>
+              </a>
+            <?php endif; ?>
           </li>
           <li>
             <b><?= $client->client_name ?></b>
@@ -129,7 +137,11 @@ $client_test_result = client_test_result();
         </ul>
       <?php endforeach; ?>
     <?php else: ?>
-      <p>Nenhum cliente encontrado</p>
+      <ul>
+        <li class="w-100" style="max-width: 100%;">
+          <p>Nenhum cliente encontrado</p>
+        </li>
+      </ul>
     <?php endif; ?>
 
   </div>
