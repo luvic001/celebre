@@ -3,7 +3,7 @@
 if (!defined('PATH')) exit;
 
 global $locale, $routeParams;
-
+global $is_date_filter;
 global $vacinas, $eventos, $is_user_logged_in, $is_admin;
 $vacinas = get_vacinas();
 $eventos = get_eventos();
@@ -30,7 +30,13 @@ if ($_GET['limit'] and is_numeric($_GET['limit'])) {
   
 }
 
-$clientes_lista = $clientes->index();
+if ($is_date_filter) {
+  $clientes_lista = $clientes->index_by_date($_GET['data_inicial'].' 00:00:00', $_GET['data_final'].' 23:59:59');
+}
+else {
+  $clientes_lista = $clientes->index();
+}
+
 $clientes_total = $clientes->get_total();
 $clientes_total_testados = $clientes->get_total_testados();
 $client_test_result = client_test_result();
@@ -195,7 +201,7 @@ $client_test_result = client_test_result();
       </div>
 
       <div class="info">
-        <p><?= $clientes->get_current_page() ?> - <?= $clientes->get_limit() ?> de <?= $clientes_total ?></p>
+        <p><?= $clientes->get_current_page() ?> - <?= $clientes->get_limit() ?> de <?= $clientes->get_current_total_query() ?></p>
       </div>
       
       <?php 
@@ -205,21 +211,23 @@ $client_test_result = client_test_result();
         $max_pagination = $clientes->get_max_pagination();
         
         if ($clientes->get_limit() < $clientes->get_current_total_query()):
-
+          if ($is_date_filter) {
+            $prefix = sprintf('?&data_inicial=%s&data_final=%s', $_GET['data_inicial'], $_GET['data_final']);
+          }
       ?>
           <div class="arrows">
             <ul>
               <li>
-                <a href="<?= site_url() ?>/clientes"><i class="fas fa-angle-double-left"></i></a>
+                <a href="<?= site_url() ?>/clientes/<?= $prefix ?>"><i class="fas fa-angle-double-left"></i></a>
               </li>
               <li>
-                <a href="<?= site_url() ?>/clientes/<?= ($previous_pagination < 2) ? null : $previous_pagination ?>"><i class="fas fa-angle-left"></i></a>
+                <a href="<?= site_url() ?>/clientes/<?= ($previous_pagination < 2) ? null : $previous_pagination ?><?= $prefix ?>"><i class="fas fa-angle-left"></i></a>
               </li>
               <li>
-                <a href="<?= site_url() ?>/clientes/<?= ($next_pagination > $max_pagination) ? $max_pagination : $next_pagination ?>"><i class="fas fa-angle-right"></i></a>
+                <a href="<?= site_url() ?>/clientes/<?= ($next_pagination > $max_pagination) ? $max_pagination : $next_pagination ?><?= $prefix ?>"><i class="fas fa-angle-right"></i></a>
               </li>
               <li>
-                <a href="<?= site_url() ?>/clientes/<?= $max_pagination ?>"><i class="fas fa-angle-double-right"></i></a>
+                <a href="<?= site_url() ?>/clientes/<?= $max_pagination ?><?= $prefix ?>"><i class="fas fa-angle-double-right"></i></a>
               </li>
             </ul>
           </div>

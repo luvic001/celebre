@@ -252,8 +252,31 @@ class clientes {
       $stmt_total_rows->execute();
       $this->total_current_query = $stmt_total_rows->fetchColumn();
 
-    };
+    }
 
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute($args ?? null);
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+  }
+
+  public function index_by_date($data_inicial, $data_final) {
+
+    $sql = sprintf(
+      'SELECT * FROM clb_clientes WHERE `client_test_covid_date` BETWEEN :data_inicial AND :data_final ORDER BY ID DESC LIMIT %d, %d', 
+      self::get_pagination(),
+      self::get_limit()
+    );
+    
+    $args = [
+      'data_inicial' => $data_inicial,
+      'data_final' => $data_final
+    ];
+
+    $sql_total_rows = 'SELECT count(*) FROM clb_clientes WHERE `client_test_covid_date` BETWEEN :data_inicial AND :data_final';
+    $stmt_total_rows = $this->db->prepare($sql_total_rows);
+    $stmt_total_rows->execute($args);
+    $this->total_current_query = $stmt_total_rows->fetchColumn();
+    pre($this->total_current_query);
     $stmt = $this->db->prepare($sql);
     $stmt->execute($args ?? null);
     return $stmt->fetchAll(PDO::FETCH_OBJ);
