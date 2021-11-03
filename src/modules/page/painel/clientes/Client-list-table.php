@@ -2,17 +2,37 @@
 
 if (!defined('PATH')) exit;
 
-global $locale;
+global $locale, $routeParams;
 
 global $vacinas, $eventos, $is_user_logged_in, $is_admin;
 $vacinas = get_vacinas();
 $eventos = get_eventos();
 
 $clientes = new clientes;
+
+if ($routeParams and is_numeric($routeParams[0])) {
+  $clientes->set_pagination($routeParams[0]);
+}
+
+$limits = [
+  '15',
+  '30',
+  '60',
+  '100',
+  '150'
+];
+if ($_GET['limit'] and is_numeric($_GET['limit'])) {
+  
+  $limit = only_number($_GET['limit']);
+  if (in_array($limit, $limits)) {
+    $clientes->set_limit(only_number($_GET['limit']));
+  }
+  
+}
+
 $clientes_lista = $clientes->index();
 $clientes_total = $clientes->get_total();
 $clientes_total_testados = $clientes->get_total_testados();
-
 $client_test_result = client_test_result();
 
 ?>
@@ -100,7 +120,7 @@ $client_test_result = client_test_result();
             <li></li>
           <?php endif; ?>
 
-          <li><?= $client->client_email ?></li>
+          <li class="client-email"><?= $client->client_email ?></li>
           <li><?= telefone($client->client_phone) ?></li>
           <li><?= $locale[$client->insert_locale] ?></li>
           <li>
@@ -161,38 +181,50 @@ $client_test_result = client_test_result();
     </a>
 
     <div class="d-flex pagination">
-
       <div class="paginate-number">
         <form class="d-flex align-items-center">
           <p class="mr-2">Exibir por vez:</p>
           <div class="input-select mt-1">
-            <select>
-              <option value="15">15</option>
+            <select limit-change>
+              <?php foreach ($limits as $lmt): ?>
+                <option value="<?= $lmt ?>"<?= ($limit == $lmt) ? 'selected' : null ?>><?= $lmt ?></option>
+              <?php endforeach; ?>
             </select>
           </div>
         </form>
       </div>
 
       <div class="info">
-        <p>1 - 10 de 76</p>
+        <p><?= $clientes->get_current_page() ?> - <?= $clientes->get_limit() ?> de <?= $clientes_total ?></p>
       </div>
+      
+      <?php 
 
-      <div class="arrows">
-        <ul>
-          <li>
-            <a href="#"><i class="fas fa-angle-double-left"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-angle-left"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-angle-right"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-angle-double-right"></i></a>
-          </li>
-        </ul>
-      </div>
+        $next_pagination = $clientes->get_current_page() + 1;
+        $previous_pagination = $clientes->get_current_page() - 1;
+        $max_pagination = $clientes->get_max_pagination();
+        
+        if ($clientes->get_limit() < $clientes->get_current_total_query()):
+
+      ?>
+          <div class="arrows">
+            <ul>
+              <li>
+                <a href="<?= site_url() ?>/clientes"><i class="fas fa-angle-double-left"></i></a>
+              </li>
+              <li>
+                <a href="<?= site_url() ?>/clientes/<?= ($previous_pagination < 2) ? null : $previous_pagination ?>"><i class="fas fa-angle-left"></i></a>
+              </li>
+              <li>
+                <a href="<?= site_url() ?>/clientes/<?= ($next_pagination > $max_pagination) ? $max_pagination : $next_pagination ?>"><i class="fas fa-angle-right"></i></a>
+              </li>
+              <li>
+                <a href="<?= site_url() ?>/clientes/<?= $max_pagination ?>"><i class="fas fa-angle-double-right"></i></a>
+              </li>
+            </ul>
+          </div>
+
+      <?php endif; ?>
 
     </div>
 

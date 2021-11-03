@@ -29,11 +29,17 @@ class clientes {
   public $insert_locale;
 
   public $client_id;
+  public $pagination;
+  public $limit;
+  public $current_page;
+  public $total_current_query;
 
   public function __construct() {
     $this->db_object = new db;
     global $db;
     $this->db = $db;
+    self::set_pagination();
+    self::set_limit();
   }
 
   public function set_client_id($client_id) {
@@ -198,13 +204,55 @@ class clientes {
 
   }
 
+  public function set_pagination($pagination = 1) {
+    $this->current_page = $pagination;
+    $pagination = (($this->limit * $pagination) ) - $this->limit;
+    $this->pagination = $pagination;
+  }
+
+  public function get_current_page() {
+    return $this->current_page;
+  }
+
+  public function set_limit($limit = 15) {
+    $this->limit = $limit;
+  }
+
+  public function get_pagination() {
+    return $this->pagination;
+  }
+
+  public function get_limit() {
+    return $this->limit;
+  }
+
+  public function get_max_pagination() {
+    return ceil(self::get_current_total_query() / $this->get_limit());
+  }
+
+  public function get_current_total_query() {
+    return $this->total_current_query;
+  }
+  
   public function index() {
 
     if (self::get_client_id()) {
       $sql = 'SELECT * FROM clb_clientes WHERE ID = :ID';
       $args['ID'] = self::get_client_id();
     }
-    else $sql = 'SELECT * FROM clb_clientes ORDER BY ID DESC';
+    else {
+      $sql = sprintf(
+        'SELECT * FROM clb_clientes ORDER BY ID DESC LIMIT %d, %d', 
+        self::get_pagination(),
+        self::get_limit()
+      );
+      
+      $sql_total_rows = 'SELECT count(*) FROM clb_clientes';
+      $stmt_total_rows = $this->db->prepare($sql_total_rows);
+      $stmt_total_rows->execute();
+      $this->total_current_query = $stmt_total_rows->fetchColumn();
+
+    };
 
     $stmt = $this->db->prepare($sql);
     $stmt->execute($args ?? null);
