@@ -33,6 +33,18 @@ if ($_GET['limit'] and is_numeric($_GET['limit'])) {
 if ($is_date_filter) {
   $clientes_lista = $clientes->index_by_date($_GET['data_inicial'].' 00:00:00', $_GET['data_final'].' 23:59:59');
 }
+elseif ($_GET['search-term']) {
+  $search_term = strip_tags($_GET['search-term']);
+  $validateFields = new validateField;
+  $validateFields->setType('field_cpf');
+  $validateFields->setValue($search_term);
+
+  if ($validateFields->check()) {
+    $search_term = only_number($search_term);
+  }
+
+  $clientes_lista = $clientes->index_by_term($search_term);
+}
 else {
   $clientes_lista = $clientes->index();
 }
@@ -53,16 +65,22 @@ $client_test_result = client_test_result();
     </div>
 
     <!-- Busca -->
-    <div class="heading-part search-user">
-      <form>
+    <div class="heading-part search-user d-flex">
+      <?php if ($search_term): ?>
+        <a href="<?= site_url() ?>/clientes" class="btn-site btn-dangeous" style="font-size: 12px; min-width: 120px; text-align: center; margin-right: 10px">Limpar busca</a>
+      <?php endif; ?>
+      <form class="w-100">
         <div class="input-text input-search">
           <label>
-            <input type="text" name="search-term" id="search-term" placeholder="Buscar cliente por CPF/RNE/Passaporte/Email/Celular" required="">
+            <input type="text" name="search-term" id="search-term" value="" placeholder="Buscar cliente por CPF/RNE/Passaporte/Email/Celular" required="">
             <button type="submit">
               <i class="fas fa-search"></i>
             </button>
           </label>
         </div>
+        <?php if ($search_term): ?>
+        <p class="mt-2">Resultado da busca por: <b><?= $search_term ?></b></p>
+        <?php endif; ?>
       </form>
     </div><!-- .heading-part.search-user -->
 
@@ -213,6 +231,9 @@ $client_test_result = client_test_result();
         if ($clientes->get_limit() < $clientes->get_current_total_query()):
           if ($is_date_filter) {
             $prefix = sprintf('?&data_inicial=%s&data_final=%s', $_GET['data_inicial'], $_GET['data_final']);
+          }
+          elseif ($search_term) {
+            $prefix = sprintf('?&search-term=%s', $search_term);
           }
       ?>
           <div class="arrows">

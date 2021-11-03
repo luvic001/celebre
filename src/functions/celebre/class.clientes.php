@@ -276,10 +276,51 @@ class clientes {
     $stmt_total_rows = $this->db->prepare($sql_total_rows);
     $stmt_total_rows->execute($args);
     $this->total_current_query = $stmt_total_rows->fetchColumn();
-    pre($this->total_current_query);
+
     $stmt = $this->db->prepare($sql);
     $stmt->execute($args ?? null);
     return $stmt->fetchAll(PDO::FETCH_OBJ);
+  }
+
+  public function index_by_term($term) {
+
+    $sql = sprintf(
+      'SELECT * FROM clb_clientes 
+        WHERE (
+          (`client_name` LIKE :search_term) OR 
+          (`client_email` LIKE :search_term) OR
+          (`client_cpf` LIKE :search_term) OR
+          (`client_phone` LIKE :search_term) OR
+          (`client_rne` LIKE :search_term) OR
+          (`client_passaporte` LIKE :search_term)
+        ) 
+        ORDER BY ID DESC LIMIT %d, %d', 
+      self::get_pagination(),
+      self::get_limit()
+    );
+    
+    $args = [
+      'search_term' => '%'.$term.'%',
+    ];
+    
+    $sql_total_rows = 'SELECT count(*) FROM clb_clientes 
+    WHERE (
+      `client_name` LIKE :search_term OR 
+      `client_email` LIKE :search_term OR
+      `client_cpf` LIKE :search_term OR
+      `client_phone` LIKE :search_term OR
+      `client_rne` LIKE :search_term OR
+      `client_passaporte` LIKE :search_term
+    )';
+    $stmt_total_rows = $this->db->prepare($sql_total_rows);
+    $stmt_total_rows->execute($args);
+    $this->total_current_query = $stmt_total_rows->fetchColumn();
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute($args ?? null);
+
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+
   }
   
   public function get_total() {
