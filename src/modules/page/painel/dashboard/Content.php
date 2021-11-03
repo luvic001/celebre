@@ -42,7 +42,7 @@ else:
         </p>
 
         <div class="pt-4 pb-4">
-          <form>
+          <form action="<?= site_url() ?>/clientes">
             <div class="input-text input-search">
               <label>
                 <input type="text" name="search-term" id="search-term" placeholder="CPF/RNE/Passaporte/Email/Telefone/etc..." required="">
