@@ -232,7 +232,44 @@ else {
   $clientes->set_client_2_dose_fabricante($_POST['vacina_2_dose_fabricante']);
   $clientes->set_client_3_dose_date($_POST['vacina_3_dose_data']);
   $clientes->set_client_3_dose_fabricante($_POST['vacina_3_dose_fabricante']);
-  $clientes->set_client_event('');
+
+  // Definição dos eventos ==========================================
+  
+  $eventos = get_eventos();
+  foreach ($eventos as $ID_evento => $label) {
+    
+    $event_key_date = sprintf('event-%s-date', $ID_evento);
+    $event_key_hour = sprintf('event-%s-hour', $ID_evento);
+    $event_key_ingress = sprintf('event-%s-ingress', $ID_evento);
+
+    if (
+      ($_POST[$event_key_date]) and 
+      ($_POST[$event_key_hour]) and
+      ($_POST[$event_key_ingress] == 'on')
+    ) {
+      $event[$ID_evento] = [
+        'date' => sprintf('%s %s', $_POST[$event_key_date], $_POST[$event_key_hour]),
+        'ingress' => ($_POST[$event_key_ingress] == 'on') ? true : false,
+        'colaborador' => $is_user_logged_in[0]['ID'],
+        'event_label' => $label
+      ];
+    }
+    else {
+      $event[$ID_evento] = [
+        'date' => false,
+        'ingress' => false,
+        'colaborador' => $is_user_logged_in[0]['ID'],
+        'event_label' => $label
+      ];
+    }
+
+  }
+
+  $event = json($event) ?? null;
+
+  // Fim da definição dos eventos ===================================
+
+  $clientes->set_client_event($event);
   $insert = $clientes->insert();
 
   if ($insert) {

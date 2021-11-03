@@ -74,7 +74,7 @@ $client_test_result = client_test_result();
     </ul>
 
     <?php if ($clientes_lista): ?>
-      <?php foreach ($clientes_lista as $client): ?>
+      <?php foreach ($clientes_lista as $client): $event = unjson($client->client_event) ?? null; ?>
         <ul>
           <li>
             <a href="<?= site_url() ?>/cadastro-de-cliente/<?= do_hash($client->ID) ?>" class="btn-site ml-2">
@@ -133,7 +133,15 @@ $client_test_result = client_test_result();
             ?>
           </li>
           <li><?= $client_test_result[$client->client_test_covid_result] ?></li>
-          <li>Evento 1 <br> Evento 2 <br> Evento 3</li>
+          <li>
+            <ul class="event-list">
+              <?php foreach ($eventos as $ID => $label): ?>
+                <?php if ($event->{$ID}->ingress): ?>
+                  <li><?= $label ?></li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+          </li>
         </ul>
       <?php endforeach; ?>
     <?php else: ?>

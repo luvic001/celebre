@@ -11,6 +11,8 @@ function get_eventos($ID = null) {
     ];
   }
 
+  $args['fields']['event_is_active'] = 1;
+
   $stmt = $db_object->select('clb_eventos', $args ?? null);
 
   if (!$stmt) return false;
