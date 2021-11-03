@@ -93,8 +93,13 @@ class validateField {
     return $this->field_nome();
   }
 
-  public function field_date(){
-    $date = formatDateYMD($this->fieldValue);
+  public function field_date($is_YMD = false){
+    if (!$is_YMD) {
+      $date = formatDateYMD($this->fieldValue);
+    }
+    else {
+      $date = $this->fieldValue;
+    }
     if (!$date) return false;
 
     $date  = explode('-', $date);

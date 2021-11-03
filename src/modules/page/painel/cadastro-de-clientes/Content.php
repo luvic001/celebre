@@ -5,6 +5,10 @@ if (!defined('PATH')) exit;
 get_modules('Header', 'page/global');
 get_modules('Header-interna', 'page/global');
 
+global $vacinas, $eventos, $is_user_logged_in;
+$vacinas = get_vacinas();
+$eventos = get_eventos();
+
 ?>
 
 
@@ -18,7 +22,8 @@ get_modules('Header-interna', 'page/global');
     </div>
 
     <div class="box-content box-cadastro">
-      <form>
+      <form action="cadastro-via-atendente" ajax-form="">
+        <input type="hidden" name="insert_locale" value="<?= do_hash($is_user_logged_in['user_locale']) ?>">
 
         <?php get_modules('Form-cadastro', 'page/painel/cadastro-de-clientes') ?>
 

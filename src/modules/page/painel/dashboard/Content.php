@@ -4,6 +4,8 @@ if (!defined('PATH')) exit;
 
 get_modules('Header', 'page/global');
 
+global $is_user_logged_in, $locale;
+
 ?>
 
 <section class="dashboard site-sections">
@@ -16,9 +18,11 @@ get_modules('Header', 'page/global');
       </figure>
     </a>
   </div>
+  <?php if ($locale): ?>
   <div class="box-content mb-4 pt-0 no-shadow no-background align-center username-description">
-    <p>Alba Saúde Posto Jockey Club</p>
+    <p><?= $locale[$is_user_logged_in['user_locale']] ?></p>
   </div>
+  <?php endif; ?>
 
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8">

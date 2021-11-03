@@ -1,7 +1,8 @@
 <?php
 
 if (!defined('PATH')) exit;
-global $is_user_logged_in;
+global $is_user_logged_in, $locale;
+$locale = get_locale($is_user_logged_in['user_locale']) ?? null;
 
 ?>
 

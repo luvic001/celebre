@@ -65,6 +65,9 @@ $routes = [
     'login' => [
       'PATH' => 'celebre/login'
     ],
+    'cadastro-via-atendente' => [
+      'PATH' => 'celebre/cadastro-via-atendente'
+    ],
   ]
 ];
 

@@ -1,7 +1,17 @@
 form
 
+  p.field-error-alert
+    +font-size(14px)
+    color: #c33
+    font-weight: 700
+    margin-top: 5px
+  
   label
     font-family: $font-default
+    &.field-error
+      input,
+      select
+        border-color: #c33 !important
 
   .input-text
     label

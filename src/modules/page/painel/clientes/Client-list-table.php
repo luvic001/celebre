@@ -2,6 +2,19 @@
 
 if (!defined('PATH')) exit;
 
+global $locale;
+
+global $vacinas, $eventos, $is_user_logged_in;
+$vacinas = get_vacinas();
+$eventos = get_eventos();
+
+$clientes = new clientes;
+$clientes_lista = $clientes->index();
+$clientes_total = $clientes->get_total();
+$clientes_total_testados = $clientes->get_total_testados();
+
+$client_test_result = client_test_result();
+
 ?>
 
 <div class="box-content table-list no-shadow">
@@ -30,14 +43,14 @@ if (!defined('PATH')) exit;
     <!-- Total de clientes -->
     <div class="heading-part user-status-total">
       <p>Total de Clientes: 
-        <span>100</span>
+        <span><?= $clientes_total ?></span>
       </p>
     </div>
 
     <!-- Total de testados -->
     <div class="heading-part user-status-total-tested">
       <p>Clientes Testados: 
-        <span>100</span>
+        <span><?= $clientes_total_testados ?></span>
       </p>
     </div>
 
@@ -51,30 +64,73 @@ if (!defined('PATH')) exit;
       <li>E-mail</li>
       <li>Celular</li>
       <li>Laboratório</li>
-      <li>Data/Hora</li>
+      <li>Data/Hora do teste</li>
       <li>Vacina</li>
       <li>Resultado do Teste</li>
       <li>Ingresso/Pulseira</li>
     </ul>
 
-    <?php for ($i=0; $i<14; $i++): ?>
-    <ul>
-      <li>
-        <a href="#" class="btn-site ml-2">
-          <i class="fas fa-edit mr-0"></i>
-        </a>
-      </li>
-      <li><b>Bruno Granato Lisboa</b></li>
-      <li>000.999.888-77</li>
-      <li>bruno@agenciacampana.com.br</li>
-      <li>(21) 98575-2225</li>
-      <li>Alba Saúde Posto Jockey Club</li>
-      <li>12/10/2021<br />17h45</li>
-      <li>Oxford/Astrazeneca <br /> 2ª Dose, 20/10/2021</li>
-      <li>Não Reagente</li>
-      <li>Evento 1 <br> Evento 2 <br> Evento 3</li>
-    </ul>
-    <?php endfor; ?>
+    <?php if ($clientes_lista): ?>
+      <?php foreach ($clientes_lista as $client): ?>
+        <ul>
+          <li>
+            <a href="<?= site_url() ?>/cadastro-de-cliente/<?= do_hash($client->ID) ?>" class="btn-site ml-2">
+              <i class="fas fa-edit mr-0"></i>
+            </a>
+          </li>
+          <li>
+            <b><?= $client->client_name ?></b>
+          </li>
+          
+          <?php if ($client->client_doctype == 1): ?>
+            <li><?= cpf($client->client_cpf) ?></li>
+          <?php elseif ($client->client_doctype == 2): ?>
+            <li><?= $client->client_rne ?></li>
+          <?php elseif ($client->client_doctype == 3): ?>
+            <li><?= $client->client_passaporte ?></li>
+          <?php else: ?>
+            <li></li>
+          <?php endif; ?>
+
+          <li><?= $client->client_email ?></li>
+          <li><?= telefone($client->client_phone) ?></li>
+          <li><?= $locale[$client->insert_locale] ?></li>
+          <li>
+            <?php 
+            if (isset_date($client->client_test_covid_date)): 
+              ___(ttime($client->client_test_covid_date, '%d/%m/%Y <br> %H:%M'));
+            endif; 
+            ?>
+          </li>
+          <li>
+            <?php 
+            
+            if (isset_date($client->client_3_dose_date) and $client->client_3_dose_fabricante !== 0) {
+              ___($vacinas[$client->client_3_dose_fabricante]);
+              ___('<br>3° dose, ');
+              ___(ttime($client->client_3_dose_date, '%d/%m/%Y'));
+            }
+
+            elseif (isset_date($client->client_2_dose_date) and $client->client_2_dose_fabricante !== 0) {
+              ___($vacinas[$client->client_2_dose_fabricante]);
+              ___('<br>2° dose, ');
+              ___(ttime($client->client_2_dose_date, '%d/%m/%Y'));
+            }
+            elseif (isset_date($client->client_1_dose_date) and $client->client_1_dose_fabricante !== 0) {
+              ___($vacinas[$client->client_1_dose_fabricante]);
+              ___('<br>1° dose, ');
+              ___(ttime($client->client_1_dose_date, '%d/%m/%Y'));
+            }
+            
+            ?>
+          </li>
+          <li><?= $client_test_result[$client->client_test_covid_result] ?></li>
+          <li>Evento 1 <br> Evento 2 <br> Evento 3</li>
+        </ul>
+      <?php endforeach; ?>
+    <?php else: ?>
+      <p>Nenhum cliente encontrado</p>
+    <?php endif; ?>
 
   </div>
 

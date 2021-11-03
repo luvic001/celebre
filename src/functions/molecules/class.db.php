@@ -34,7 +34,7 @@ class db {
       $sql .= 'VALUES (' . $val . ')';
       
       $stmt = $this->db->prepare($sql);
-      
+
       foreach ($data as $key => $value){
         $param = ':' . $key;
         $stmt->bindValue($param, $value);

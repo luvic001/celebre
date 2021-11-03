@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('PATH')) exit;
-
+global $locale, $is_user_logged_in;
 get_modules('DatePickerRange-config', 'page/global');
 
 ?>
@@ -24,7 +24,7 @@ get_modules('DatePickerRange-config', 'page/global');
         </figure>
       </div>
       <div>
-        <p class="align-center align-md-left">Alba Saúde Posto Jockey Club</p>
+        <p class="align-center align-md-left"><?= $locale[$is_user_logged_in['user_locale']] ?></p>
       </div>
     </div>
 
