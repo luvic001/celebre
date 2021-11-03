@@ -55,6 +55,11 @@ $routes = [
     'TITLE' => 'Cadastro de Clientes | Celebre - Seu Evento sem Covid',
     'blank_page' => false
   ],
+  'exportar-dados' => [
+    'PATH' => 'page/exportar-dados',
+    'TITLE' => '',
+    'blank_page' => true
+  ],
   'backend' => [
     'ajax' => [
       'PATH' => 'core/ajax-module'

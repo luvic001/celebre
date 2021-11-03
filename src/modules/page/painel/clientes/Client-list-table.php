@@ -199,7 +199,7 @@ $client_test_result = client_test_result();
   </div>
 
   <div class="footer-pagination">
-    <a href="#" class="btn-site btn-no-color">
+    <a href="<?= site_url() ?>/exportar-dados" target="_blank" class="btn-site btn-no-color">
       <i class="fas fa-download"></i>
       Baixar Relatório de Exames
     </a>

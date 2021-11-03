@@ -20,9 +20,6 @@ if (!$routes->{$curRoute[0]}->blank_page){
   get_modules('Header');
 }
 
-if (isset($routes->{$curRoute[0]}->PATH) AND $curRoute[0] !== 'index')
-  get_modules('Menu-sidebar');
-
 get_modules('Content', $routes->{$curRoute[0]}->PATH ?? 'page/404');
 
 if (!$routes->{$curRoute[0]}->blank_page) {
