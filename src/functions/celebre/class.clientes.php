@@ -154,6 +154,37 @@ class clientes {
 
   }
 
+  public function update() {
+    $update = $this->db_object->update('clb_clientes', [
+      'client_name' => $this->client_name,
+      'client_email' => $this->client_email,
+      'client_cpf' => $this->client_cpf,
+      'client_phone' => $this->client_phone,
+      'client_nascimento' => $this->client_nascimento,
+      'client_doctype' => $this->client_doctype,
+      'client_rne' => $this->client_rne,
+      'client_passaporte' => $this->client_passaporte,
+      'client_country_origin' => $this->client_country_origin,
+      'client_country_origin_2' => $this->client_country_origin_2,
+      'client_test_covid_date' => $this->client_test_covid_date,
+      'client_test_covid_result' => $this->client_test_covid_result,
+      'client_1_dose_fabricante' => $this->client_1_dose_fabricante,
+      'client_2_dose_fabricante' => $this->client_2_dose_fabricante,
+      'client_3_dose_fabricante' => $this->client_3_dose_fabricante,
+      'client_3_dose_date' => $this->client_3_dose_date,
+      'client_2_dose_date' => $this->client_2_dose_date,
+      'client_1_dose_date' => $this->client_1_dose_date,
+      'client_event' => $this->client_event,
+    ], [
+      'fields' => [
+        'ID' => self::get_client_id()
+      ]
+    ]);
+
+    return $update ?? false;
+
+  }
+
   public function index() {
 
     if (self::get_client_id()) {

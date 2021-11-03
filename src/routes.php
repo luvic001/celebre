@@ -68,6 +68,9 @@ $routes = [
     'cadastro-via-atendente' => [
       'PATH' => 'celebre/cadastro-via-atendente'
     ],
+    'atualizacao-via-atendente' => [
+      'PATH' => 'celebre/atualizacao-via-atendente'
+    ],
   ]
 ];
 

@@ -15,7 +15,18 @@ if (!$insert_locale) fjson([
   'content' => 'Não foi possível validar o posto de acesso.'
 ], 400);
 
+$client_id = $_POST['client'];
+$client_id = undo_hash($client_id);
+
 $clientes = new clientes;
+$clientes->set_client_id($client_id);
+
+$client = $clientes->index()[0];
+if (!$client) fjson([
+  'success' => false,
+  'content' => 'Cliente não encontrado'
+], 400);
+
 $validateField = new validateField;
 
 // Validando nome
@@ -49,7 +60,7 @@ elseif (!$validateField->check()) {
     'content' => 'E-mail inválido'
   ];
 }
-elseif (email_exists($_POST['client_email'])) {
+elseif ( ($client->client_email !== $_POST['client_email']) and (email_exists($_POST['client_email'])) ) {
   $err[] = [
     'field' => 'client_email',
     'content' => 'Este e-mail já está cadastrado'
@@ -81,7 +92,7 @@ elseif ($_POST['client_doctype'] == 1) {
       'content' => 'CPF inválido'
     ];
   }
-  elseif (doc_exists(1, only_number($_POST['client_cpf']))) {
+  elseif ( ($client->client_cpf !== only_number($_POST['client_cpf'])) and (doc_exists(1, only_number($_POST['client_cpf'])))) {
     $err[] = [
       'field' => 'client_cpf',
       'content' => 'CPF já cadastrado'
@@ -97,7 +108,7 @@ elseif ($_POST['client_doctype'] == 2) {
       'content' => 'Informe o RNE'
     ];
   }
-  elseif (doc_exists(2, $_POST['client_rne'])) {
+  elseif ( ($client->client_rne !== $_POST['client_rne']) and (doc_exists(2, $_POST['client_rne']))) {
     $err[] = [
       'field' => 'client_rne',
       'content' => 'RNE já cadastrado'
@@ -120,7 +131,7 @@ elseif ($_POST['client_doctype'] == 3) {
       'content' => 'Informe o número do passaporte'
     ];
   }
-  elseif (doc_exists(3, $_POST['client_passaporte'])) {
+  elseif ( ($client->client_passaporte !== $_POST['client_passaporte']) and (doc_exists(3, $_POST['client_passaporte']))) {
     $err[] = [
       'field' => 'client_passaporte',
       'content' => 'Passaporte já cadastrado'
@@ -173,7 +184,7 @@ ob_start();
 
 if ($err) {
 ?>
-  <p class="mb-3">Ocorreu (ram) erros aos cadastrar cliente:</p>
+  <p class="mb-3">Ocorreu (ram) erros aos atualizar os dados de cadastro:</p>
   <ul>
 
     <?php foreach ($err as $e): ?>
@@ -233,13 +244,21 @@ else {
   $clientes->set_client_3_dose_date($_POST['vacina_3_dose_data']);
   $clientes->set_client_3_dose_fabricante($_POST['vacina_3_dose_fabricante']);
   $clientes->set_client_event('');
-  $insert = $clientes->insert();
+  $update = $clientes->update();
 
-  if ($insert) {
-    ___('<p>Cadastro inserido com sucesso</p>');
+  if ($update) {
+    ___('
+      <p>Cadastro atualizado com sucesso</p>
+      <script>
+        window.setTimeout(() => {
+          window.location.reload(true);
+        }, 900);
+      </script>
+    
+    ');
   }
   else {
-    ___('<p>Não foi possível inserir o cadastro</p>');
+    ___('<p>Não foi possível atualizar o cadastro</p>');
   }
 
 }
@@ -247,7 +266,7 @@ else {
 $content = ob_get_contents();
 ob_end_clean();
 
-$success = (!$err and $insert);
+$success = (!$err and $update);
 
 fjson([
   'success' => $success,
