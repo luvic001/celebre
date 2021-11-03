@@ -28,10 +28,20 @@ class clientes {
   public $client_event;
   public $insert_locale;
 
+  public $client_id;
+
   public function __construct() {
     $this->db_object = new db;
     global $db;
     $this->db = $db;
+  }
+
+  public function set_client_id($client_id) {
+    $this->client_id = $client_id;
+  }
+
+  public function get_client_id() {
+    return $this->client_id;
   }
 
   public function set_client_name($client_name) {
@@ -145,19 +155,32 @@ class clientes {
   }
 
   public function index() {
-    $stmt = $this->db->prepare('SELECT * FROM clb_clientes');
-    $stmt->execute();
+
+    if (self::get_client_id()) {
+      $sql = 'SELECT * FROM clb_clientes WHERE ID = :ID';
+      $args['ID'] = self::get_client_id();
+    }
+    else $sql = 'SELECT * FROM clb_clientes ORDER BY ID DESC';
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute($args ?? null);
     return $stmt->fetchAll(PDO::FETCH_OBJ);
   }
   
   public function get_total() {
-    $stmt = $this->db->prepare('SELECT count(*) FROM clb_clientes');
+    
+    $sql = 'SELECT count(*) FROM clb_clientes';
+
+    $stmt = $this->db->prepare($sql);
     $stmt->execute();
     return $stmt->fetchColumn();
   }
 
   public function get_total_testados() {
-    $stmt = $this->db->prepare('SELECT count(*) FROM clb_clientes WHERE `client_test_covid_result` != "0"');
+    
+    $sql = 'SELECT count(*) FROM clb_clientes WHERE `client_test_covid_result` != "0"';
+
+    $stmt = $this->db->prepare($sql);
     $stmt->execute();
     return $stmt->fetchColumn();
   }
