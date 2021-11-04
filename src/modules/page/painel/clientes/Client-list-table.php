@@ -64,7 +64,7 @@ $client_test_result = client_test_result();
 
     <!-- Adicionar novo -->
     <div class="heading-part add-new">
-      <a href="<?= site_url() ?>/cadastro-de-cliente" title="Novo cadastro" class="btn-site">Novo cadastro</a>
+      <a href="<?= site_url() ?>/cadastro-de-cliente" title="Novo cadastro" class="btn-site mr-3">Novo cadastro</a>
     </div>
 
     <!-- Busca -->

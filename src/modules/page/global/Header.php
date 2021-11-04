@@ -22,7 +22,7 @@ $locale = get_locale($is_user_logged_in['user_locale']) ?? null;
   <div class="container-fluid">
     <div class="box-content d-flex justify-content-between">
       <div class="user-name">
-        <p>Olá, <?= explode(' ', $is_user_logged_in['user_nicename'])[0] ?>!</p>
+        <p>Olá, <?= $is_user_logged_in['user_nicename'] ?>!</p>
       </div>
       <div class="logout-button">
         <a href="logout" ajax-link title="Sair">
