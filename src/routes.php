@@ -67,6 +67,9 @@ $routes = [
     'slugify' => [
       'PATH' => 'core/slugify'
     ],
+    'get-time' => [
+      'PATH' => 'core/get-time'
+    ],
     'login' => [
       'PATH' => 'celebre/login'
     ],

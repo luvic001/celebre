@@ -42,6 +42,9 @@ elseif ($_GET['search-term']) {
   if ($validateFields->check()) {
     $search_term = only_number($search_term);
   }
+  elseif (is_celular($search_term)) {
+    $search_term = only_number($search_term);
+  }
 
   $clientes_lista = $clientes->index_by_term($search_term);
 }
@@ -72,7 +75,7 @@ $client_test_result = client_test_result();
       <form class="w-100">
         <div class="input-text input-search">
           <label>
-            <input type="text" name="search-term" id="search-term" value="" placeholder="Buscar cliente por CPF/RNE/Passaporte/Email/Celular" required="">
+            <input type="text" name="search-term" id="search-term" value="" placeholder="Nome, CPF, RNE, Passaporte, Email, Celular." required="">
             <button type="submit">
               <i class="fas fa-search"></i>
             </button>

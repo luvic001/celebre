@@ -45,7 +45,7 @@ else:
           <form action="<?= site_url() ?>/clientes">
             <div class="input-text input-search">
               <label>
-                <input type="text" name="search-term" id="search-term" placeholder="CPF/RNE/Passaporte/Email/Telefone/etc..." required="">
+                <input type="text" name="search-term" id="search-term" placeholder="Nome, CPF, RNE, Passaporte, Email, Celular." required="">
                 <button type="submit">
                   <i class="fas fa-search"></i>
                 </button>

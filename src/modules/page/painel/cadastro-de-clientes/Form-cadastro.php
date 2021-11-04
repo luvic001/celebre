@@ -116,7 +116,7 @@ global $is_user_logged_in, $client;
     <div class="input-text mb-4">
       <label>
         <span class="label-text">Celular</span>
-        <input type="text" name="client_phone" id="client_phone" mask="cel" maxlength="15" value="<?= telefone($client->client_phone) ?>">
+        <input type="text" name="client_phone" id="client_phone" mask="cel" maxlength="15" value="<?= telefone($client->client_phone) ?>" placeholder="(xx) 00000-0000">
       </label>
     </div>
   </div>

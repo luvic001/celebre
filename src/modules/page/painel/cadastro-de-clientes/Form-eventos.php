@@ -27,7 +27,7 @@ if ($eventos):
 
           <div class="input-checkbox pl-0">
             <label>
-              <input type="checkbox" name="event-<?= $key ?>-ingress" id="event-<?= $key ?>-ingress" <?= $event_is_checked ? 'checked' : null ?>>
+              <input type="checkbox" fill-date-fields-checkbox="event-<?= $key ?>-date|event-<?= $key ?>-hour" name="event-<?= $key ?>-ingress" id="event-<?= $key ?>-ingress" <?= $event_is_checked ? 'checked' : null ?>>
               <span class="label-text">Ingresso/Pulseira</span>
             </label>
           </div>

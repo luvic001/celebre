@@ -275,10 +275,10 @@ else {
   if ($insert) {
     ?>
     
-      <p class="d-block mb-3" style="font-weight: 700;">Cadastro inserido com sucesso</p>
-      <a href="javascript:void(0);" class="btn-site btn-wire mb-2" close-popup>Iniciar um novo cadastro</a>
-      <a href="<?= site_url() ?>/cadastro-de-cliente/<?= do_hash($insert) ?>" class="btn-site btn-wire mb-2">Ver ficha do cliente</a>
-      <a href="<?= site_url() ?>/clientes" class="btn-site btn-wire mb-2">
+    <p class="d-block mb-3 align-center" style="font-weight: 700;">Cadastro inserido com sucesso</p>
+    <a href="javascript:void(0);" class="btn-site btn-wire mb-2 w-100 d-flex justify-content-center" style="max-width: 300px; margin: 0 auto;" close-popup>Iniciar um novo cadastro</a>
+      <a href="<?= site_url() ?>/cadastro-de-cliente/<?= do_hash($insert) ?>" style="max-width: 300px; margin: 0 auto;" class="btn-site btn-wire mb-2 w-100 d-flex justify-content-center">Ver ficha do cliente</a>
+      <a href="<?= site_url() ?>/clientes" class="btn-site btn-wire mb-2 w-100 d-flex justify-content-center" style="max-width: 300px; margin: 0 auto;">
         <i class="fa fa-angle-left" aria-hidden="true"></i>
         Ver todos os clientes
       </a>
