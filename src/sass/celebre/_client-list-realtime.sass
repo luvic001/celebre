@@ -1,0 +1,40 @@
+.client-list-realtime
+  li
+    width: 100%
+    margin-bottom: -1px
+    a
+      display: flex
+      align-items: center
+      padding: 1rem
+      border: 1px solid #eeeeee
+      background-color: $branco
+      &:hover
+        text-decoration: none
+        background-color: #f9f9f9
+        .btn-site
+          +filter(brightness(0.9))
+      >.users-content
+        width: 100%
+        display: block
+        > span
+          display: block
+          &.title
+            +font-size(16px)
+            color: $azul
+            font-weight: 700
+          &.minor-text
+            +font-size(14px)
+            line-height: 20px
+            color: #777
+            font-style: italic
+
+
+[realtime-search]
+  border-radius: 0 !important
+
+.disabled-div
+  +opacity(0.5)
+
+[disabled-input]
+  pointer-events: none
+  touch-action: none

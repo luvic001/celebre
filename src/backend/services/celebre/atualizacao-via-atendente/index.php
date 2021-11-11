@@ -292,15 +292,15 @@ else {
   $update = $clientes->update();
 
   if ($update) {
-    ___('
-      <p>Cadastro atualizado com sucesso</p>
-      <script>
-        window.setTimeout(() => {
-          window.location.reload(true);
-        }, 900);
-      </script>
-    
-    ');
+    ?>
+    <p class="d-block mb-3 align-center" style="font-weight: 700;">Informações Salvas com sucesso</p>
+    <a href="<?= site_url() ?>/cadastro-de-cliente/" class="btn-site btn-wire mb-2 w-100 d-flex justify-content-center" style="max-width: 300px; margin: 0 auto;">Iniciar um novo cadastro</a>
+      <a close-popup href="#" style="max-width: 300px; margin: 0 auto;" class="btn-site btn-wire mb-2 w-100 d-flex justify-content-center">Ver ficha do cliente</a>
+      <a href="<?= site_url() ?>/clientes" class="btn-site btn-wire mb-2 w-100 d-flex justify-content-center" style="max-width: 300px; margin: 0 auto;">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+        Ver todos os clientes
+      </a>
+    <?php
   }
   else {
     ___('<p>Não foi possível atualizar o cadastro</p>');

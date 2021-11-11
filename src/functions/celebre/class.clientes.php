@@ -381,7 +381,7 @@ class clientes {
       'search_term' => '%'.$term.'%',
     ];
     
-    if (is_promotor()){
+    if (is_promotor() and !$search_all){
       $sql_total_rows = 'SELECT count(*) FROM clb_clientes 
        WHERE (
         `client_name` LIKE :search_term OR 

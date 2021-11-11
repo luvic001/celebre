@@ -82,6 +82,9 @@ $routes = [
     'excluir-cliente' => [
       'PATH' => 'celebre/excluir-cliente'
     ],
+    'search-user' => [
+      'PATH' => 'celebre/search-user'
+    ],
   ]
 ];
 

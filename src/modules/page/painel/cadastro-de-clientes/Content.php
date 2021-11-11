@@ -39,7 +39,10 @@ else:
         </div>
       </div>
 
+      <?php get_modules('Form-busca-de-clientes', 'page/painel/cadastro-de-clientes') ?>
+
       <div class="box-content box-cadastro">
+
         <form action="<?= $client ? 'atualizacao-via-atendente' : 'cadastro-via-atendente' ?>" ajax-form="">
           <input type="hidden" name="insert_locale" value="<?= do_hash($is_user_logged_in['user_locale']) ?>">
           <?php 
