@@ -283,6 +283,12 @@ else {
   // Fim da definição dos eventos ===================================
 
   $clientes->set_client_event($event);
+
+  // Definição de colaboradores
+  $colaboradores = to_array(unjson($client->insert_colaborador));
+  $colaboradores[$is_user_logged_in[0]['ID']] = true;
+  $clientes->set_insert_colaborador(json($colaboradores));
+  // Fim da definição de colaboradores
   $update = $clientes->update();
 
   if ($update) {

@@ -270,6 +270,9 @@ else {
   // Fim da definição dos eventos ===================================
 
   $clientes->set_client_event($event);
+
+  $colaboradores[$is_user_logged_in[0]['ID']] = true;
+  $clientes->set_insert_colaborador(json($colaboradores));
   $insert = $clientes->insert();
 
   if ($insert) {

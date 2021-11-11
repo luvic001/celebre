@@ -27,6 +27,7 @@ class clientes {
   public $client_3_dose_fabricante;
   public $client_event;
   public $insert_locale;
+  public $insert_colaborador;
 
   public $client_id;
   public $pagination;
@@ -130,6 +131,10 @@ class clientes {
     $this->insert_locale = $insert_locale;
   }
 
+  public function set_insert_colaborador($insert_colaborador) {
+    $this->insert_colaborador = $insert_colaborador;
+  }
+
   public function insert() {
 
     $insert = $this->db_object->insert('clb_clientes', [
@@ -153,7 +158,8 @@ class clientes {
       'client_1_dose_date' => $this->client_1_dose_date,
       'client_event' => $this->client_event,
       'insert_locale' => $this->insert_locale,
-      'insert_date' => date('Y-m-d H:i:s')
+      'insert_date' => date('Y-m-d H:i:s'),
+      'insert_colaborador' => $this->insert_colaborador
     ]);
 
     return $insert ?? false;
@@ -181,6 +187,7 @@ class clientes {
       'client_2_dose_date' => $this->client_2_dose_date,
       'client_1_dose_date' => $this->client_1_dose_date,
       'client_event' => $this->client_event,
+      'insert_colaborador' => $this->insert_colaborador,
     ], [
       'fields' => [
         'ID' => self::get_client_id()
