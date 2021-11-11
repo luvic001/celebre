@@ -7,7 +7,7 @@ global $is_user_logged_in, $client;
 
 <div class="col-12 d-flex justify-content-center flex-wrap form-cadastro">
   
-  <div class="col-md-6">
+  <div class="col-lg-6">
     <div class="input-text mb-4">
       <label>
         <span class="label-text">Nome completo</span>
@@ -16,11 +16,11 @@ global $is_user_logged_in, $client;
     </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-lg-6">
     <div class="row">
       
-      <div class="col-md-3">
-        <div class="input-text input-select">
+      <div class="col-md-4">
+        <div class="input-text input-select mb-4">
           <label>
             <span class="label-text" style="margin-bottom: 20px;">Documento</span>
             <select name="client_doctype" id="client_doctype" doc-change>
@@ -32,7 +32,7 @@ global $is_user_logged_in, $client;
         </div>
       </div>
 
-      <div class="col-md-9">
+      <div class="col-md-8">
         <div class="row">
 
           <!-- CPF -->
@@ -103,7 +103,7 @@ global $is_user_logged_in, $client;
 
   <div class="col-12"></div>
 
-  <div class="col-md-6">
+  <div class="col-lg-6">
     <div class="input-text mb-4">
       <label>
         <span class="label-text">E-mail</span>
@@ -112,7 +112,7 @@ global $is_user_logged_in, $client;
     </div>
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-6 col-lg-3">
     <div class="input-text mb-4">
       <label>
         <span class="label-text">Celular</span>
@@ -121,7 +121,7 @@ global $is_user_logged_in, $client;
     </div>
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-6 col-lg-3">
     <div class="input-text mb-4">
       <label>
         <span class="label-text">Data de Nascimento</span>
