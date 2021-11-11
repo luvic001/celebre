@@ -10,7 +10,7 @@ if (!$is_user_logged_in) fjson([
   'content' => 'Você precisa estar logado para realizar esta ação'
 ], 400);
 
-if (!is_admin()) fjson([
+if (!is_admin() and !is_promotor()) fjson([
   'success' => false,
   'content' => 'Você não tem permissões para realizar esta ação'
 ], 400);
@@ -25,6 +25,16 @@ if (!$client) fjson([
 $clientes = new clientes;
 $clientes->set_client_id($client);
 $client = $clientes->index()[0];
+
+$colaboradores = unjson($client->insert_colaborador);
+
+
+if (is_promotor()) {
+  if (!$colaboradores->{$is_user_logged_in['ID']}) fjson([
+    'success' => false,
+    'content' => 'Você não tem permissão para excluir este usuário'
+  ], 400);
+}
 
 if (!$client) fjson([
   'success' => false,

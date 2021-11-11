@@ -127,7 +127,7 @@ $client_test_result = client_test_result();
             <a href="<?= site_url() ?>/cadastro-de-cliente/<?= do_hash($client->ID) ?>" class="btn-site ml-2">
               <i class="fas fa-edit mr-0"></i>
             </a><br/>
-            <?php if ($is_admin): ?>
+            <?php if ($is_admin or is_promotor()): ?>
               <a href="javascript:void(0);" delete-client="<?= do_hash($client->ID) ?>" title="excluir <?= $client->client_name ?>" class="btn-site btn-dangeous ml-2 mt-2">
                 <i class="far fa-trash-alt mr-0"></i>
               </a>

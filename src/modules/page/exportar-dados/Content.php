@@ -7,7 +7,13 @@ if (!$is_user_logged_in) die('Acesso negado');
 
 global $db;
 
-$sql = 'SELECT * FROM clb_clientes ORDER BY ID DESC';
+if (is_promotor()) {
+  $ID_promotor = only_number($is_user_logged_in[0]['ID']);
+  $sql = 'SELECT * FROM clb_clientes WHERE (JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true") ORDER BY ID DESC';
+}
+else {
+  $sql = 'SELECT * FROM clb_clientes ORDER BY ID DESC';
+}
 $stmt = $db->prepare($sql);
 $stmt->execute();
 $clientes = $stmt->fetchAll(PDO::FETCH_OBJ);
