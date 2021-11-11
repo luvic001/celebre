@@ -424,7 +424,15 @@ class clientes {
   
   public function get_total() {
     
-    $sql = 'SELECT count(*) FROM clb_clientes';
+    global $is_user_logged_in;
+    $ID_promotor = only_number($is_user_logged_in['ID']);
+
+    if (is_promotor()) {
+      $sql = 'SELECT count(*) FROM clb_clientes WHERE (JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true")';
+    }
+    else {
+      $sql = 'SELECT count(*) FROM clb_clientes';
+    }
 
     $stmt = $this->db->prepare($sql);
     $stmt->execute();
@@ -433,8 +441,22 @@ class clientes {
 
   public function get_total_testados() {
     
-    $sql = 'SELECT count(*) FROM clb_clientes WHERE `client_test_covid_result` != "0"';
+    if (is_promotor()) {
+      
+      global $is_user_logged_in;
+      $ID_promotor = only_number($is_user_logged_in['ID']);
 
+      $sql = 'SELECT count(*) FROM clb_clientes WHERE
+      (
+        (JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true") AND 
+        `client_test_covid_result` != "0"
+      )
+      ';
+    }
+    else {
+      $sql = 'SELECT count(*) FROM clb_clientes WHERE `client_test_covid_result` != "0"';
+    }
+      
     $stmt = $this->db->prepare($sql);
     $stmt->execute();
     return $stmt->fetchColumn();
