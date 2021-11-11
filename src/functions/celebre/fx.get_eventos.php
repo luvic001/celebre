@@ -21,6 +21,15 @@ function get_eventos($ID = null) {
     $eventos[$evento['ID']] = $evento['evento_name'];
   }
 
+  if (is_promotor()) {
+    foreach ($eventos as $ID => $event) {
+      if (in_array($ID, is_promotor())) {
+        $event_promotor[$ID] = $event;
+      }
+    }
+    $eventos = $event_promotor;
+  }
+
   return $eventos;
 
 }

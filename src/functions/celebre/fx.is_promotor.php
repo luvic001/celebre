@@ -2,7 +2,7 @@
 
 if (!defined('PATH')) exit;
 
-function is_admin() {
+function is_promotor() {
 
   global $is_user_logged_in;
 
@@ -12,6 +12,6 @@ function is_admin() {
 
   if (!$is_user_logged_in) return false;
 
-  return ($is_user_logged_in['user_level'] == 1);
+  return ($is_user_logged_in['user_level'] == 3) ? unjson(($is_user_logged_in['event_scope'])) : null;
 
 }
