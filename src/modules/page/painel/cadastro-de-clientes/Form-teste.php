@@ -11,7 +11,7 @@ $hora = isset_date($client->client_test_covid_date) ? ttime($client->client_test
 <div class="form-wire mb-3">
   <h3>Teste de Covid</h3>
 
-  <div class="d-flex flex-wrap flex-lg-nowrap side-input">
+  <div class="d-flex side-input">
     <div class="input-text input-select">
       <label>
         <span class="label-text mb-4">Resultado</span>

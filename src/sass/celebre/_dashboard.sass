@@ -29,8 +29,14 @@ section.client-list
         width: 25%
         &.search-user
           width: 52%
+          min-width: 400px
+          +breakpoint(md)
+            min-width: auto
         &.user-status-total-tested,
         &.user-status-total
+          min-width: 240px
+          +breakpoint(md)
+            min-width: auto
           p
             text-align: right
             font-weight: 700
@@ -38,6 +44,9 @@ section.client-list
               color: $laranja
         &.add-new
           width: 18%
+          min-width: 140px
+          +breakpoint(md)
+            min-width: auto
           a
             +font-size(14px)
     
@@ -62,8 +71,12 @@ section.client-list
           padding: 10px
           line-height: 20px
           +font-size(14px)
+          min-width: 140px
+          +breakpoint(md)
+            min-width: auto
           &:first-child
             max-width: 80px
+            min-width: 80px
           &.client-email
             white-space: nowrap
           ul.event-list
@@ -118,7 +131,7 @@ section.client-list
   .side-input
     margin-bottom: 3rem
     flex-wrap: wrap
-    +breakpoint(md)
+    +breakpoint(lg)
       flex-wrap: nowrap
     h4
       +font-size(16px)
@@ -129,19 +142,20 @@ section.client-list
     > *
       width: 50%
       padding: 0
-      +breakpoint(md)
+      +breakpoint(lg)
         padding: 0 1rem
       &:first-child
         padding-left: 0
         width: 100%
         margin-bottom: 1.4rem
         padding-right: 0
+        +breakpoint(lg)
           margin-bottom: 0
           width: 45%
       &:last-child
         padding-right: 0
         padding-left: 1rem
-      +breakpoint(md)
+      +breakpoint(lg)
         width: 45%
       &:last-child
         label
@@ -150,7 +164,7 @@ section.client-list
             padding-bottom: 8px
             width: 100%
     > h4
-      +breakpoint(md)
+      +breakpoint(lg)
         width: auto !important
   .box-evento
     border-bottom: 1px solid $cinza-fundo
