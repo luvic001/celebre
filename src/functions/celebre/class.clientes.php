@@ -252,15 +252,16 @@ class clientes {
       if (is_promotor()) {
 
         global $is_user_logged_in;
-        $ID_promotor = only_number($is_user_logged_in['ID']);
+        $ID_promotor = '"'.only_number($is_user_logged_in['ID']).'"';
         
         $sql = sprintf(
-          'SELECT * FROM clb_clientes WHERE (JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true") ORDER BY ID DESC LIMIT %d, %d', 
+          "SELECT * FROM clb_clientes WHERE (JSON_EXTRACT(insert_colaborador, '$.".$ID_promotor."') = true) ORDER BY ID DESC LIMIT %d, %d", 
           self::get_pagination(),
           self::get_limit()
         );
+
         
-        $sql_total_rows = 'SELECT count(*) FROM clb_clientes WHERE (JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true")';
+        $sql_total_rows = "SELECT count(*) FROM clb_clientes WHERE (JSON_EXTRACT(insert_colaborador, '$.".$ID_promotor."') = true)";
       }
       else {
         $sql = sprintf(
@@ -286,17 +287,17 @@ class clientes {
   public function index_by_date($data_inicial, $data_final) {
 
     global $is_user_logged_in;
-    $ID_promotor = only_number($is_user_logged_in['ID']);
+    $ID_promotor = '"'.only_number($is_user_logged_in['ID']).'"';
 
     if (is_promotor()) {
       $sql = sprintf(
-        'SELECT * FROM clb_clientes WHERE 
+        "SELECT * FROM clb_clientes WHERE 
         (
-          (JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true") AND
+          (JSON_EXTRACT(insert_colaborador, '$.".$ID_promotor."') = true) AND
           ( `client_test_covid_date` BETWEEN :data_inicial AND :data_final) 
         )
         
-        ORDER BY ID DESC LIMIT %d, %d', 
+        ORDER BY ID DESC LIMIT %d, %d", 
         self::get_pagination(),
         self::get_limit()
       );
@@ -316,11 +317,11 @@ class clientes {
     ];
 
     if (is_promotor()) {
-      $sql_total_rows = 'SELECT count(*) FROM clb_clientes WHERE 
+      $sql_total_rows = "SELECT count(*) FROM clb_clientes WHERE 
       (
-        (JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true") AND
+        (JSON_EXTRACT(insert_colaborador, '$.".$ID_promotor."') = true) AND
         ( `client_test_covid_date` BETWEEN :data_inicial AND :data_final)
-      )';
+      )";
     }
     else {
       $sql_total_rows = 'SELECT count(*) FROM clb_clientes WHERE `client_test_covid_date` BETWEEN :data_inicial AND :data_final';
@@ -339,13 +340,13 @@ class clientes {
   public function index_by_term($term, $search_all = false) {
     
     global $is_user_logged_in;
-    $ID_promotor = only_number($is_user_logged_in['ID']);
+    $ID_promotor = '"'.only_number($is_user_logged_in['ID']).'"';
 
     if (is_promotor() and !$search_all) {
       $sql = sprintf(
-        'SELECT * FROM clb_clientes 
+        "SELECT * FROM clb_clientes 
           WHERE 
-            ((JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true") AND
+            ((JSON_EXTRACT(insert_colaborador, '$.".$ID_promotor."') = true) AND
             (
               (`client_name` LIKE :search_term) OR 
               (`client_email` LIKE :search_term) OR
@@ -354,7 +355,7 @@ class clientes {
               (`client_rne` LIKE :search_term) OR
               (`client_passaporte` LIKE :search_term)
             ))
-          ORDER BY ID DESC LIMIT %d, %d', 
+          ORDER BY ID DESC LIMIT %d, %d", 
         self::get_pagination(),
         self::get_limit()
       );
@@ -396,10 +397,10 @@ class clientes {
 
     else {
       
-      $sql_total_rows = 'SELECT count(*) FROM clb_clientes 
+      $sql_total_rows = "SELECT count(*) FROM clb_clientes 
        WHERE 
         (
-          (JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true") AND
+          (JSON_EXTRACT(insert_colaborador, '$.".$ID_promotor."') = true) AND
         (
           `client_name` LIKE :search_term OR 
           `client_email` LIKE :search_term OR
@@ -409,7 +410,7 @@ class clientes {
           `client_passaporte` LIKE :search_term
           )
         )
-      ';
+      ";
     }
     $stmt_total_rows = $this->db->prepare($sql_total_rows);
     $stmt_total_rows->execute($args);
@@ -425,10 +426,10 @@ class clientes {
   public function get_total() {
     
     global $is_user_logged_in;
-    $ID_promotor = only_number($is_user_logged_in['ID']);
+    $ID_promotor = '"'.only_number($is_user_logged_in['ID']).'"';
 
     if (is_promotor()) {
-      $sql = 'SELECT count(*) FROM clb_clientes WHERE (JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true")';
+      $sql = "SELECT count(*) FROM clb_clientes WHERE (JSON_EXTRACT(insert_colaborador, '$.".$ID_promotor."') = true)";
     }
     else {
       $sql = 'SELECT count(*) FROM clb_clientes';
@@ -444,14 +445,14 @@ class clientes {
     if (is_promotor()) {
       
       global $is_user_logged_in;
-      $ID_promotor = only_number($is_user_logged_in['ID']);
+      $ID_promotor = '"'.only_number($is_user_logged_in['ID']).'"';
 
-      $sql = 'SELECT count(*) FROM clb_clientes WHERE
+      $sql = "SELECT count(*) FROM clb_clientes WHERE
       (
-        (JSON_EXTRACT(insert_colaborador, "$.'.$ID_promotor.'") = "true") AND 
-        `client_test_covid_result` != "0"
+        (JSON_EXTRACT(insert_colaborador, '$.".$ID_promotor."') = true) AND 
+        `client_test_covid_result` != '0'
       )
-      ';
+      ";
     }
     else {
       $sql = 'SELECT count(*) FROM clb_clientes WHERE `client_test_covid_result` != "0"';
