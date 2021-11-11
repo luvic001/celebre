@@ -246,6 +246,8 @@ else {
 
   // Definição dos eventos ==========================================
   
+  $event = to_array(unjson($client->client_event));
+
   $eventos = get_eventos();
   foreach ($eventos as $ID_evento => $label) {
     
