@@ -60,6 +60,11 @@ $routes = [
     'TITLE' => '',
     'blank_page' => true
   ],
+  'gerador-de-senhas' => [
+    'PATH' => 'page/gerador-de-senhas',
+    'TITLE' => '',
+    'blank_page' => true
+  ],
   'backend' => [
     'ajax' => [
       'PATH' => 'core/ajax-module'
