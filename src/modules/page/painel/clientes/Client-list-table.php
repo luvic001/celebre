@@ -53,7 +53,7 @@ else {
 }
 
 $clientes_total = $clientes->get_total();
-$clientes_total_testados = $clientes->get_total_testados();
+// $clientes_total_testados = $clientes->get_total_testados();
 $client_test_result = client_test_result();
 
 ?>
@@ -93,7 +93,8 @@ $client_test_result = client_test_result();
         <span><?= $clientes_total ?></span>
       </p>
     </div>
-
+    
+    <?php /*
     <!-- Total de testados -->
     <div class="heading-part user-status-total-tested">
       <p>Clientes Testados: 
@@ -103,6 +104,7 @@ $client_test_result = client_test_result();
         </a>
       </p>
     </div>
+    */ ?>
 
   </div>
 
@@ -113,10 +115,12 @@ $client_test_result = client_test_result();
       <li>CPF/RNE/Passaporte</li>
       <li>E-mail</li>
       <li>Celular</li>
+      <?php /*
       <li>Laboratório</li>
-      <li>Data/Hora do teste</li>
-      <li>Vacina</li>
+      <li>Data/Hora do teste</li> */ ?>
+      <li>Vacina</li> <?php /*
       <li>Resultado do Teste</li>
+      */ ?>
       <li>Ingresso/Pulseira</li>
     </ul>
 
@@ -149,14 +153,16 @@ $client_test_result = client_test_result();
 
           <li class="client-email"><?= $client->client_email ?></li>
           <li><?= telefone($client->client_phone) ?></li>
+          <?php /*
           <li><?= $locale[$client->insert_locale] ?></li>
           <li>
             <?php 
             if (isset_date($client->client_test_covid_date)): 
               ___(ttime($client->client_test_covid_date, '%d/%m/%Y <br> %H:%M'));
-            endif; 
-            ?>
-          </li>
+              endif; 
+              ?>
+            </li>
+            */ ?>
           <li>
             <?php 
             
@@ -179,7 +185,9 @@ $client_test_result = client_test_result();
             
             ?>
           </li>
+          <?php /*
           <li><?= $client_test_result[$client->client_test_covid_result] ?></li>
+          */ ?>
           <li>
             <ul class="event-list">
               <?php foreach ($eventos as $ID => $label): ?>
@@ -202,10 +210,13 @@ $client_test_result = client_test_result();
   </div>
 
   <div class="footer-pagination">
+    <?php /*
     <a href="<?= site_url() ?>/exportar-dados" target="_blank" class="btn-site btn-no-color">
       <i class="fas fa-download"></i>
       Baixar Relatório de Exames
     </a>
+    */ ?>
+    <span></span>
 
     <div class="d-flex pagination">
       <div class="paginate-number">
