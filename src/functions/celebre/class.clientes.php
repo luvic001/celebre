@@ -148,8 +148,8 @@ class clientes {
       'client_passaporte' => $this->client_passaporte,
       'client_country_origin' => $this->client_country_origin,
       'client_country_origin_2' => $this->client_country_origin_2,
-      'client_test_covid_date' => $this->client_test_covid_date,
-      'client_test_covid_result' => $this->client_test_covid_result,
+      // 'client_test_covid_date' => $this->client_test_covid_date,
+      // 'client_test_covid_result' => $this->client_test_covid_result,
       'client_1_dose_fabricante' => $this->client_1_dose_fabricante,
       'client_2_dose_fabricante' => $this->client_2_dose_fabricante,
       'client_3_dose_fabricante' => $this->client_3_dose_fabricante,
@@ -178,8 +178,8 @@ class clientes {
       'client_passaporte' => $this->client_passaporte,
       'client_country_origin' => $this->client_country_origin,
       'client_country_origin_2' => $this->client_country_origin_2,
-      'client_test_covid_date' => $this->client_test_covid_date,
-      'client_test_covid_result' => $this->client_test_covid_result,
+      // 'client_test_covid_date' => $this->client_test_covid_date,
+      // 'client_test_covid_result' => $this->client_test_covid_result,
       'client_1_dose_fabricante' => $this->client_1_dose_fabricante,
       'client_2_dose_fabricante' => $this->client_2_dose_fabricante,
       'client_3_dose_fabricante' => $this->client_3_dose_fabricante,
@@ -294,7 +294,7 @@ class clientes {
         "SELECT * FROM clb_clientes WHERE 
         (
           (JSON_EXTRACT(insert_colaborador, '$.".$ID_promotor."') = true) AND
-          ( `client_test_covid_date` BETWEEN :data_inicial AND :data_final) 
+          ( `insert_date` BETWEEN :data_inicial AND :data_final) 
         )
         
         ORDER BY ID DESC LIMIT %d, %d", 
@@ -441,7 +441,7 @@ class clientes {
   }
 
   public function get_total_testados() {
-    
+
     if (is_promotor()) {
       
       global $is_user_logged_in;
@@ -457,7 +457,7 @@ class clientes {
     else {
       $sql = 'SELECT count(*) FROM clb_clientes WHERE `client_test_covid_result` != "0"';
     }
-      
+    
     $stmt = $this->db->prepare($sql);
     $stmt->execute();
     return $stmt->fetchColumn();

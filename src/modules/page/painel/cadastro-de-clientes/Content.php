@@ -64,9 +64,9 @@ else:
             <div class="col-md-6">
               <div class="row">
                 <div class="col-12">
-                  <?php get_modules('Form-teste', 'page/painel/cadastro-de-clientes', [
+                  <?php /* get_modules('Form-teste', 'page/painel/cadastro-de-clientes', [
                     'client' => $client
-                  ]) ?>
+                  ]) */ ?>
                   <?php get_modules('Form-eventos', 'page/painel/cadastro-de-clientes', [
                     'client' => $client
                   ]) ?>

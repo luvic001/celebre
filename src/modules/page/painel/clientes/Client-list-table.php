@@ -210,14 +210,13 @@ $client_test_result = client_test_result();
   </div>
 
   <div class="footer-pagination">
-    <?php /*
-    <a href="<?= site_url() ?>/exportar-dados" target="_blank" class="btn-site btn-no-color">
+    
+    <?php /* <a href="<?= site_url() ?>/exportar-dados" target="_blank" class="btn-site btn-no-color"> */ ?>
+    <a href="javascript:void(0);" class="btn-site btn-no-color disabled" style="opacity:0.5;pointer-events:none;">
       <i class="fas fa-download"></i>
       Baixar Relatório de Exames
     </a>
-    */ ?>
-    <span></span>
-
+    
     <div class="d-flex pagination">
       <div class="paginate-number">
         <form class="d-flex align-items-center">

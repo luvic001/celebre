@@ -235,8 +235,8 @@ else {
   }
 
   // Cadastros do evento
-  $clientes->set_client_test_covid_date($_POST['teste_covid_date'] . ':' . $_POST['teste_covid_time']);
-  $clientes->set_client_test_covid_result($_POST['teste_covid_result']);
+  // $clientes->set_client_test_covid_date($_POST['teste_covid_date'] . ':' . $_POST['teste_covid_time']);
+  // $clientes->set_client_test_covid_result($_POST['teste_covid_result']);
   $clientes->set_client_1_dose_date($_POST['vacina_1_dose_data']);
   $clientes->set_client_1_dose_fabricante($_POST['vacina_1_dose_fabricante']);
   $clientes->set_client_2_dose_date($_POST['vacina_2_dose_data']);
