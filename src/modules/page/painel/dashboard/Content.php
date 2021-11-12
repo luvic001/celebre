@@ -17,16 +17,21 @@ else:
 <section class="dashboard site-sections">
   <div class="container">
     
+    <?php /*
     <div class="box-content no-shadow no-background align-center">
       <a href="https://albasaude.com.br" target="_blank" title="Alba Saúde | Consultas médicas e exames a preços populares">
-      <figure class="alba-logo">
-        <img src="<?= get_image('logo-alba-fundo-transparente.png') ?>" alt="Alba Saúde Logo">
-      </figure>
-    </a>
-  </div>
-  <?php if ($locale): ?>
+        <figure class="alba-logo">
+          <img src="<?= get_image('logo-alba-fundo-transparente.png') ?>" alt="Alba Saúde Logo">
+        </figure>
+      </a>
+    </div> */ ?>
+  <?php if (is_promotor()):  ?>
   <div class="box-content mb-4 pt-0 no-shadow no-background align-center username-description">
-    <p><?= $locale[$is_user_logged_in['user_locale']] ?></p>
+    <p style="line-height: 28px; margin-top: 20px;">
+      <?php foreach (get_eventos() as $evento): ?>
+        <?= $evento ?><br>
+      <?php endforeach ?>
+    </p>
   </div>
   <?php endif; ?>
 

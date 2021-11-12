@@ -4,12 +4,16 @@ if (!defined('PATH')) exit;
 global $locale, $is_user_logged_in;
 get_modules('DatePickerRange-config', 'page/global');
 
-?>
 
+if (is_promotor()):
+  $eventos = get_eventos();
+  
+?>
 <section class="header-interna">
   <div class="container-fluid d-md-flex justify-content-md-between align-items-md-end">
 
-    <div class="alba-logo d-md-flex align-items-md-end">
+    <div class="alba-logo">
+      <?php /*
       <div class="mr-md-5">
         <figure>
           <a 
@@ -23,8 +27,13 @@ get_modules('DatePickerRange-config', 'page/global');
           </a>
         </figure>
       </div>
+      */ ?>
       <div>
-        <p class="align-center align-md-left"><?= $locale[$is_user_logged_in['user_locale']] ?></p>
+        <p class="align-center align-md-left" style="line-height: 24px; font-size: 18px;">
+          <?php foreach ($eventos as $evento): ?>
+            - <?= $evento ?><br/>
+          <?php endforeach; ?>
+        </p>
       </div>
     </div>
 
@@ -37,3 +46,7 @@ get_modules('DatePickerRange-config', 'page/global');
     
   </div>
 </section>
+
+<?php 
+
+endif;

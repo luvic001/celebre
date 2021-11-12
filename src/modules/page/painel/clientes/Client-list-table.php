@@ -211,8 +211,11 @@ $client_test_result = client_test_result();
 
   <div class="footer-pagination">
     
-    <?php /* <a href="<?= site_url() ?>/exportar-dados" target="_blank" class="btn-site btn-no-color"> */ ?>
+    <?php if (can_export()): ?>
+    <a href="<?= site_url() ?>/exportar-dados" target="_blank" class="btn-site btn-no-color">
+    <?php else: ?>
     <a href="javascript:void(0);" class="btn-site btn-no-color disabled" style="opacity:0.5;pointer-events:none;">
+    <?php endif; ?>
       <i class="fas fa-download"></i>
       Baixar Relatório de Exames
     </a>

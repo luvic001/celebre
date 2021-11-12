@@ -5,6 +5,8 @@ if (!defined('PATH')) exit;
 $is_user_logged_in = is_user_logged_in();
 if (!$is_user_logged_in) die('Acesso negado');
 
+if (!can_export()) die('Você não tem permissão para acessar este recurso');
+
 global $db;
 
 if (is_promotor()) {
@@ -32,8 +34,8 @@ $li_export[] = [
   'RNE_PAIS_DE_ORIGEM',
   'PASSAPORTE',
   'PASSAPORTE_PAIS_DE_ORIGEM',
-  'DATA_DO_TESTE_DE_COVID',
-  'RESULTADO_DO_TESTE_DE_COVID',
+  // 'DATA_DO_TESTE_DE_COVID',
+  // 'RESULTADO_DO_TESTE_DE_COVID',
   'VACINA_1_DOSE_DATA',
   'VACINA_1_DOSE_FABRICANTE',
   'VACINA_2_DOSE_DATA',
@@ -53,10 +55,10 @@ $tipo_de_documento = [
   '3' => 'Passaporte'
 ];
 
-$resultado = [
-  '1' => 'Reagente',
-  '2' => 'Nao reagente'
-];
+// $resultado = [
+//   '1' => 'Reagente',
+//   '2' => 'Nao reagente'
+// ];
 
 $key = 1;
 
@@ -73,8 +75,8 @@ foreach ($clientes as $client) {
     $client->client_country_origin ?? '',
     $client->client_passaporte ?? '',
     $client->client_country_origin_2 ?? '',
-    isset_date($client->client_test_covid_date) ? ttime($client->client_test_covid_date, '%d/%m/%Y %H:%M') : '',
-    $resultado[$client->client_test_covid_result] ?? '',
+    // isset_date($client->client_test_covid_date) ? ttime($client->client_test_covid_date, '%d/%m/%Y %H:%M') : '',
+    // $resultado[$client->client_test_covid_result] ?? '',
     isset_date($client->client_1_dose_date) ? ttime($client->client_1_dose_date, '%d/%m/%Y') : '',
     $vacina[$client->client_1_dose_fabricante] ?? '',
     isset_date($client->client_2_dose_date) ? ttime($client->client_2_dose_date, '%d/%m/%Y') : '',

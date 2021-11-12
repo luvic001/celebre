@@ -27,6 +27,7 @@ $is_date_filter = ($data_inicial_valid and $data_final_valid);
         <?php if ($is_date_filter): ?>
           <a href="<?= site_url() ?>/clientes" class="btn-site btn-dangeous" style="font-size: 10px;">limpar</a>
         <?php endif; ?>
+        <?php /*
         <form class="w-100">
           <div class="input-date-select">
             <div class="select-date-range">
@@ -41,6 +42,7 @@ $is_date_filter = ($data_inicial_valid and $data_final_valid);
             </div>
           </div>
         </form>
+        */ ?>
       </div>
 
     </div>
