@@ -11,8 +11,8 @@ function login($user_name = null, $password = null) {
   
   $login = $user->login();
 
-  if ($login[0]['user_level'] == '3')
-    return false;
+  // if ($login[0]['user_level'] == '3')
+  //   return false;
 
   return $login;
 
